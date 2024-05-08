@@ -1,0 +1,218 @@
+<!-- <!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카카오 맵</title>
+    <script
+      type="text/javascript"
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a407cc1b4f977616867444c4237e7fef"
+    ></script>
+  </head>
+  <body>
+    <div id="map" style="width: 100%; height: 400px"></div>
+
+    <script>
+      // 카카오 맵 초기화
+      kakao.maps.load(() => {
+        const mapContainer = document.getElementById('map');
+        const mapOptions = {
+          center: new kakao.maps.LatLng(37.2635727, 127.0286009),
+          level: 10,
+        };
+        const map = new kakao.maps.Map(mapContainer, mapOptions);
+
+        const stations = [];
+        const linePaths = [[], []];
+        const markers = [[], []];
+        function clearMarkersAndPaths(markers, paths) {
+          for (const marker of markers) {
+            marker.setMap(null);
+          }
+          markers.length = 0;
+
+          for (const path of paths) {
+            path.setMap(null);
+          }
+          paths.length = 0;
+        }
+
+        const fetchAndCreateMarkers = async (
+          url,
+          linePathIndex,
+          markerIndex,
+          markerSize
+        ) => {
+          try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            // stations 배열 초기화
+            stations[linePathIndex] = [];
+
+            for (const station of data.stations) {
+              // 마커 이미지 경로 추가
+              station.markerImageSrc =
+                'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png';
+
+              const markerImage = new kakao.maps.MarkerImage(
+                station.markerImageSrc,
+                markerSize
+              );
+              const marker = new kakao.maps.Marker({
+                map: map,
+                position: new kakao.maps.LatLng(station.y, station.x),
+                image: markerImage,
+              });
+
+              linePaths[linePathIndex].push(marker.getPosition());
+
+              const infoWindow = new kakao.maps.InfoWindow({
+                content: station.content,
+              });
+              kakao.maps.event.removeListener(marker, 'mouseover');
+              kakao.maps.event.addListener(
+                marker,
+                'mouseover',
+                makeOverListener(map, marker, infoWindow)
+              );
+              kakao.maps.event.addListener(
+                marker,
+                'mouseout',
+                makeOutListener(infoWindow)
+              );
+
+              // stations 배열에 추가
+              stations[linePathIndex].push(station);
+              markers[markerIndex].push(marker);
+            }
+
+            const polyline = new kakao.maps.Polyline({
+              path: linePaths[linePathIndex],
+              strokeWeight: 7,
+              strokeColor: linePathIndex === 0 ? '#FF0000' : 'blue',
+              strokeOpacity: 0.7,
+              strokeStyle: 'solid',
+            });
+
+            polyline.setMap(map);
+          } catch (error) {
+            console.error(`Error fetching data from ${url}:`, error.message);
+          }
+        };
+
+        const removeMarkers = (markerArray) => {
+          for (const marker of markerArray) {
+            marker.setMap(null);
+          }
+          markerArray.length = 0;
+        };
+
+        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+        const fetchBusDataAndCreateMarkers = async () => {
+          await fetchAndCreateMarkers(
+            '/api/stations',
+            0,
+            0,
+            new kakao.maps.Size(10, 10)
+          );
+          await delay(5000); // 기다릴 시간 설정
+          await fetchAndCreateMarkers(
+            '/api/stations2',
+            1,
+            1,
+            new kakao.maps.Size(10, 10)
+          );
+        };
+
+        const fetchAndCreateBusMarkers = async (
+          url,
+          markerIndex,
+          busImageSrc
+        ) => {
+          try {
+            const response = await fetch(url);
+            const busData = await response.json();
+
+            removeMarkers(markers[markerIndex]);
+
+            for (const busStation of busData.stations) {
+              const station = stations[markerIndex].find(
+                (station) => station.stationId === busStation.stationId
+              );
+
+              if (station) {
+                const busMarkerImage = new kakao.maps.MarkerImage(
+                  busImageSrc,
+                  new kakao.maps.Size(24, 35)
+                );
+                const busMarker = new kakao.maps.Marker({
+                  map: map,
+                  position: new kakao.maps.LatLng(station.y, station.x),
+                  image: busMarkerImage,
+                });
+
+                const busInfowindow = new kakao.maps.InfoWindow({
+                  content: busStation.content,
+                });
+
+                kakao.maps.event.addListener(
+                  busMarker,
+                  'mouseover',
+                  makeOverListener(map, busMarker, busInfowindow)
+                );
+                kakao.maps.event.addListener(
+                  busMarker,
+                  'mouseout',
+                  makeOutListener(busInfowindow)
+                );
+
+                markers[markerIndex].push(busMarker);
+              }
+            }
+          } catch (error) {
+            console.error(
+              `Error fetching bus data from ${url}:`,
+              error.message
+            );
+          }
+        };
+
+        fetchBusDataAndCreateMarkers();
+        setInterval(fetchBusDataAndCreateMarkers, 5000);
+
+        setInterval(
+          () =>
+            fetchAndCreateBusMarkers(
+              '/api/bus',
+              0,
+              'https://www.freeiconspng.com/uploads/school-bus-icon-12.png'
+            ),
+          5000
+        );
+        setInterval(
+          () =>
+            fetchAndCreateBusMarkers(
+              '/api/bus2',
+              1,
+              'https://www.freeiconspng.com/uploads/school-bus-icon-13.png'
+            ),
+          5000
+        );
+      });
+
+      function makeOverListener(map, marker, infowindow) {
+        return function () {
+          infowindow.open(map, marker);
+        };
+      }
+
+      function makeOutListener(infowindow) {
+        return function () {
+          infowindow.close();
+        };
+      }
+    </script>
+  </body>
+</html> -->
