@@ -53,6 +53,11 @@ const getData = async () => {
     // console.log('can_data:', segments);
 
     let eighty = null;
+    let eightyone1 = null;
+    let eightyone2 = null;
+    let eightyfive1 = null;
+    let eightyfive2 = null;
+
     for (const segment of segments) {
       if (segment.startsWith('80')) {
         const words = segment.split(' ').map((word) => word.trim());
@@ -62,22 +67,30 @@ const getData = async () => {
         }
       }
     }
+    for (const segment of segments) {
+      if (segment.startsWith('81:')) {
+        const words = segment.split(' ').map((word) => word.trim());
 
+        if (words.length >= 2) {
+          eightyone1 = words[0].substring(3);
+          eightyone2 = words[1];
+          break;
+        }
+      }
+    }
     if (eighty !== null) {
       console.log(eighty, '번 랙');
-      return { time: times, eighty };
-    } else {
-      console.log(
-        '80으로 시작하는 세그먼트를 찾지 못했거나 세 번째 단어가 없습니다.'
-      );
-      return null;
+    }
+    if (eightyone1 !== null && eightyone2 !== null) {
+      const hexValue = (parseInt(eightyone2) + parseInt(eightyone1),
+      16).toFixed(1); // eightyone2와 eightyone1을 합친 16진수 값 (예: '1c87')
+      // 16진수를 10진수로 변환
+      console.log(`${hexValue}`);
     }
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
     return null;
   }
-
-  
 };
 
 // 1초마다 데이터 가져오기
