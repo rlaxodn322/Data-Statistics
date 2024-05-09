@@ -17,8 +17,8 @@ AWS.config.update({
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 const tableName = 'battery001';
-
-router.get('/getdata', async (req, res) => {
+// 데이터 가져오는 함수 정의
+const getData = async () => {
   try {
     const params = {
       TableName: tableName,
@@ -38,22 +38,70 @@ router.get('/getdata', async (req, res) => {
 
     if (result.Items.length === 0) {
       console.log('DynamoDB에서 데이터를 찾을 수 없습니다.');
-      res.json({}); // 데이터가 없는 경우 빈 객체 반환
-      return;
+      return null;
     }
 
     const latestData = result.Items[0]; // 가장 최근 데이터 하나만 가져오기
     const { times, data } = latestData; // times 필드와 data 필드 추출
     const jsonData = JSON.parse(data); // data 필드의 JSON 문자열을 파싱
     const canData = jsonData.data.can_data; // can_data 필드 가져오기
-    const segments = canData.split(',').map((segment) => segment.trim()); // can_data를 파싱하여 배열로 변환
+    const segments = canData.split('  ').map((segment) => segment.trim()); // can_data를 파싱하여 배열로 변환
+    const serial_code = jsonData.serial_code; // can_data 필드 가져오기
 
+    console.log(serial_code);
     console.log('가장 최근 데이터의 시간:', times);
-    console.log('가장 최근 데이터의 can_data:', segments);
+    // console.log('can_data:', segments);
 
-    res.json({ time: times, segments });
+    let eighty = null;
+    for (const segment of segments) {
+      if (segment.startsWith('80')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 3) {
+          eighty = words[2];
+          break; // 세 번째 단어 값을 찾았으므로 반복문 종료
+        }
+      }
+    }
+
+    if (eighty !== null) {
+      console.log(eighty, '번 랙');
+      return { time: times, eighty };
+    } else {
+      console.log(
+        '80으로 시작하는 세그먼트를 찾지 못했거나 세 번째 단어가 없습니다.'
+      );
+      return null;
+    }
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
+    return null;
+  }
+
+  
+};
+
+// 1초마다 데이터 가져오기
+setInterval(async () => {
+  try {
+    const data = await getData();
+    if (data) {
+    }
+  } catch (error) {
+    console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
+  }
+}, 3000); // 1000밀리초 (1초)마다 getData 함수 호출
+
+// /getdata 엔드포인트 정의
+router.get('/getdata', async (req, res) => {
+  try {
+    const data = await getData();
+    if (data) {
+      res.json(data); // 가져온 데이터를 JSON 응답으로 반환
+    } else {
+      res.json({}); // 데이터가 없는 경우 빈 객체 반환
+    }
+  } catch (error) {
+    console.error('getdata 엔드포인트에서 오류 발생:', error);
     res.status(500).json({ error: '내부 서버 오류' });
   }
 });
