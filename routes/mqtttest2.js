@@ -17,21 +17,25 @@ AWS.config.update({
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 const tableName = 'battery001';
+const startTime = '2024-05-08T12:00:00Z'; // 시작 시간 (ISO 8601 형식)
+const endTime = '2024-05-08T12:00:50Z'; // 종료 시간 (ISO 8601 형식)
 // 데이터 가져오는 함수 정의
-const getData = async () => {
+const getData = async (startTime, endTime) => {
   try {
     const params = {
       TableName: tableName,
-      KeyConditionExpression: 'serial_code = :cid',
+      KeyConditionExpression:
+        'serial_code = :cid AND #timestamp BETWEEN :start AND :end',
       ExpressionAttributeValues: {
         ':cid': 'car001',
+        ':start': startTime,
+        ':end': endTime,
       },
-      ProjectionExpression: 'times, #data', // 가져올 속성 지정 (times와 data 필드)
       ExpressionAttributeNames: {
-        '#data': 'data',
+        '#timestamp': 'time',
       },
-      ScanIndexForward: false, // 내림차순으로 정렬 (가장 최근 데이터부터 가져오기 위해)
-      Limit: 1, // 결과를 하나만 가져오도록 제한
+      ScanIndexForward: false,
+      Limit: 1,
     };
 
     const result = await dynamoDB.query(params).promise();
@@ -50,7 +54,6 @@ const getData = async () => {
 
     console.log(serial_code);
     console.log('가장 최근 데이터의 시간:', times);
-    // console.log('can_data:', segments);
 
     let eighty,
       eightyone1,
@@ -537,56 +540,77 @@ const getData = async () => {
     console.log('Rack 전체의 평균 전압/', hexValue);
 
     console.log(
-      'cell 전압/',
+      'cell 1,2,3,4 전압/',
       hexValue23,
       hexValue24,
       hexValue25,
-      hexValue26,
+      hexValue26
+    );
+    console.log(
+      'cell 5,6,7,8 전압/',
       hexValue27,
       hexValue28,
       hexValue29,
-      hexValue30,
+      hexValue30
+    );
+    console.log(
+      'cell 9,10,11,12 전압/',
       hexValue31,
       hexValue32,
       hexValue33,
-      hexValue34,
+      hexValue34
+    );
+    console.log(
+      'cell 13,14,15,16 전압/',
       hexValue35,
       hexValue36,
       hexValue37,
-      hexValue38,
+      hexValue38
+    );
+    console.log(
+      'cell 17,18,19,20 전압/',
       hexValue39,
       hexValue40,
       hexValue41,
-      hexValue42,
-      hexValue43,
-      hexValue44
+      hexValue42
     );
-
+    console.log('cell 21,22 전압/', hexValue43, hexValue44);
     console.log(
-      'cell  온도/',
+      'cell 1,2,3,4 온도/',
       hexValue1,
       hexValue2,
       hexValue3,
-      hexValue4,
+      hexValue4
+    );
+    console.log(
+      'cell 5,6,7,8 온도/',
       hexValue5,
       hexValue6,
       hexValue7,
-      hexValue8,
+      hexValue8
+    );
+    console.log(
+      'cell 9,10,11,12 온도/',
       hexValue9,
       hexValue10,
       hexValue11,
-      hexValue12,
+      hexValue12
+    );
+    console.log(
+      'cell 13,14,15,16 온도/',
       hexValue13,
       hexValue14,
       hexValue15,
-      hexValue16,
+      hexValue16
+    );
+    console.log(
+      'cell 17,18,19,20 온도/',
       hexValue17,
       hexValue18,
       hexValue19,
-      hexValue20,
-      hexValue21,
-      hexValue22
+      hexValue20
     );
+    console.log('cell 21, 22 온도/', hexValue21, hexValue22);
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
     return null;
@@ -596,20 +620,27 @@ const getData = async () => {
 // 1초마다 데이터 가져오기
 setInterval(async () => {
   try {
-    const data = await getData();
+    const data = await getData(startTime, endTime); // startTime과 endTime 전달
     if (data) {
+      // 데이터 처리
     }
   } catch (error) {
     console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
   }
 }, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
-
 // /getdata 엔드포인트 정의
 router.get('/getdata', async (req, res) => {
   try {
-    const data = await getData();
+    const { startTime, endTime } = req.query;
+
+    if (!startTime || !endTime) {
+      return res.status(400).json({ error: '시작 및 종료 시간이 필요합니다.' });
+    }
+
+    const data = await getData(startTime, endTime);
+
     if (data) {
-      res.json(data); // 가져온 데이터를 JSON 응답으로 반환
+      res.json(data);
     } else {
       res.json({}); // 데이터가 없는 경우 빈 객체 반환
     }
