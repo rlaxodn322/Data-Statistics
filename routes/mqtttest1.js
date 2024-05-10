@@ -55,6 +55,12 @@ const getData = async () => {
     let eighty,
       eightyone1,
       eightyone2,
+      eightyone3,
+      eightyone4,
+      eightyone5,
+      eightyone6,
+      eightyone7,
+      eightyone8,
       hexValue,
       hexValue1,
       hexValue2,
@@ -100,6 +106,10 @@ const getData = async () => {
       hexValue42,
       hexValue43,
       hexValue44,
+      hexValue45,
+      hexValue46,
+      hexValue47,
+      hexValue48,
       one101,
       one102,
       one103,
@@ -205,6 +215,27 @@ const getData = async () => {
             eightyone1 = words[0].substring(3);
             eightyone2 = words[1];
             hexValue = (parseInt(eightyone2 + eightyone1, 16) * 0.1).toFixed(1);
+          }
+          if (words.length >= 2) {
+            eightyone3 = words[2];
+            eightyone4 = words[3];
+            hexValue45 = (parseInt(eightyone4 + eightyone3, 16) * 0.1).toFixed(
+              1
+            );
+          }
+          if (words.length >= 2) {
+            eightyone5 = words[4];
+            eightyone6 = words[5];
+            hexValue46 = (parseInt(eightyone6 + eightyone5, 16) * 0.1).toFixed(
+              1
+            );
+          }
+          if (words.length >= 2) {
+            eightyone7 = words[6];
+            eightyone8 = words[7];
+            hexValue47 = (parseInt(eightyone8 + eightyone7, 16) * 0.1).toFixed(
+              1
+            );
           }
           break;
 
@@ -535,6 +566,9 @@ const getData = async () => {
     }
     console.log('Rack Number/', eighty);
     console.log('Rack 전체의 평균 전압/', hexValue);
+    console.log('Rack 전체의 평균 전류/', hexValue45);
+    console.log('Rack 전체의 합산 전류/', hexValue46);
+    console.log('Rack 전체의 평균 파워/', hexValue47);
 
     console.log(
       'cell 전압/',
