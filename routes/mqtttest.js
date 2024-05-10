@@ -87,6 +87,59 @@ const getData = async () => {
     let hexValue29 = null;
     let hexValue30 = null;
     let hexValue31 = null;
+    let hexValue32 = null;
+    let hexValue33 = null;
+    let hexValue34 = null;
+    let hexValue35 = null;
+    let hexValue36 = null;
+    let hexValue37 = null;
+    let hexValue38 = null;
+    let hexValue39 = null;
+    let hexValue40 = null;
+    let hexValue41 = null;
+    let hexValue42 = null;
+    let hexValue43 = null;
+    let hexValue44 = null;
+    let one101 = null;
+    let one102 = null;
+    let one103 = null;
+    let one104 = null;
+    let one105 = null;
+    let one106 = null;
+    let one107 = null;
+    let one108 = null;
+    let one111 = null;
+    let one112 = null;
+    let one113 = null;
+    let one114 = null;
+    let one115 = null;
+    let one116 = null;
+    let one117 = null;
+    let one118 = null;
+    let one121 = null;
+    let one122 = null;
+    let one123 = null;
+    let one124 = null;
+    let one125 = null;
+    let one126 = null;
+    let one127 = null;
+    let one128 = null;
+    let one131 = null;
+    let one132 = null;
+    let one133 = null;
+    let one134 = null;
+    let one135 = null;
+    let one136 = null;
+    let one137 = null;
+    let one138 = null;
+    let one141 = null;
+    let one142 = null;
+    let one143 = null;
+    let one144 = null;
+    let one145 = null;
+    let one146 = null;
+    let one147 = null;
+    let one148 = null;
     let one161 = null;
     let one162 = null;
     let one163 = null;
@@ -149,20 +202,217 @@ const getData = async () => {
           eightyone1 = words[0].substring(3);
           eightyone2 = words[1];
           hexValue = (
-            parseInt(eightyone2, 16) + parseInt(eightyone1, 16)
+            parseInt(eightyone2, 16) +
+            parseInt(eightyone1, 16) / 10
           ).toFixed(1); // eightyone2와 eightyone1을 합친 16진수 값 (예: '1c87')
           // 16진수를 10진수로 변환
         }
       }
+
+      if (segment.startsWith('110:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          one101 = words[0].substring(4);
+          one102 = words[1];
+          hexValue23 = (parseInt(one102 + one101, 16) * 0.001).toFixed(3);
+        }
+      }
+      if (segment.startsWith('110:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          for (let i = 0; i < 3; i++) {
+            let index1 = 2 + i * 2;
+            let index2 = 3 + i * 2;
+            let one16 = words[index1];
+            let hexValue = (
+              parseInt(words[index2] + one16, 16) * 0.001
+            ).toFixed(3);
+            // 변수에 값을 할당
+            if (i === 0) {
+              one103 = one16;
+              hexValue24 = hexValue;
+            } else if (i === 1) {
+              one105 = one16;
+              hexValue25 = hexValue;
+            } else if (i === 2) {
+              one107 = one16;
+              hexValue26 = hexValue;
+            }
+          }
+        }
+      }
+
+      if (segment.startsWith('111:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          one111 = words[0].substring(4);
+          one112 = words[1];
+          hexValue27 = (parseInt(one112 + one111, 16) * 0.001).toFixed(3);
+        }
+      }
+      if (segment.startsWith('111:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          for (let i = 0; i < 3; i++) {
+            let index1 = 2 + i * 2;
+            let index2 = 3 + i * 2;
+            let one16 = words[index1];
+            let hexValue = (
+              parseInt(words[index2] + one16, 16) * 0.001
+            ).toFixed(3);
+            // 변수에 값을 할당
+            if (i === 0) {
+              one113 = one16;
+              hexValue28 = hexValue;
+            } else if (i === 1) {
+              one115 = one16;
+              hexValue29 = hexValue;
+            } else if (i === 2) {
+              one117 = one16;
+              hexValue30 = hexValue;
+            }
+          }
+        }
+      }
+
+      if (segment.startsWith('112:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          one121 = words[0].substring(4);
+          one122 = words[1];
+          hexValue31 = (parseInt(one122 + one121, 16) * 0.001).toFixed(3);
+        }
+      }
+      if (segment.startsWith('112:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          for (let i = 0; i < 3; i++) {
+            let index1 = 2 + i * 2;
+            let index2 = 3 + i * 2;
+            let one16 = words[index1];
+            let hexValue = (
+              parseInt(words[index2] + one16, 16) * 0.001
+            ).toFixed(3);
+            // 변수에 값을 할당
+            if (i === 0) {
+              one123 = one16;
+              hexValue32 = hexValue;
+            } else if (i === 1) {
+              one125 = one16;
+              hexValue33 = hexValue;
+            } else if (i === 2) {
+              one127 = one16;
+              hexValue34 = hexValue;
+            }
+          }
+        }
+      }
+
+      if (segment.startsWith('113:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          one131 = words[0].substring(4);
+          one132 = words[1];
+          hexValue35 = (parseInt(one132 + one131, 16) * 0.001).toFixed(3);
+        }
+      }
+      if (segment.startsWith('113:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          for (let i = 0; i < 3; i++) {
+            let index1 = 2 + i * 2;
+            let index2 = 3 + i * 2;
+            let one16 = words[index1];
+            let hexValue = (
+              parseInt(words[index2] + one16, 16) * 0.001
+            ).toFixed(3);
+            // 변수에 값을 할당
+            if (i === 0) {
+              one133 = one16;
+              hexValue36 = hexValue;
+            } else if (i === 1) {
+              one135 = one16;
+              hexValue37 = hexValue;
+            } else if (i === 2) {
+              one137 = one16;
+              hexValue38 = hexValue;
+            }
+          }
+        }
+      }
+
+      if (segment.startsWith('114:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          one131 = words[0].substring(4);
+          one132 = words[1];
+          hexValue39 = (parseInt(one132 + one131, 16) * 0.001).toFixed(3);
+        }
+      }
+      if (segment.startsWith('114:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          for (let i = 0; i < 3; i++) {
+            let index1 = 2 + i * 2;
+            let index2 = 3 + i * 2;
+            let one16 = words[index1];
+            let hexValue = (
+              parseInt(words[index2] + one16, 16) * 0.001
+            ).toFixed(3);
+            // 변수에 값을 할당
+            if (i === 0) {
+              one133 = one16;
+              hexValue40 = hexValue;
+            } else if (i === 1) {
+              one135 = one16;
+              hexValue41 = hexValue;
+            } else if (i === 2) {
+              one137 = one16;
+              hexValue42 = hexValue;
+            }
+          }
+        }
+      }
+
+      if (segment.startsWith('115:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          one141 = words[0].substring(4);
+          one142 = words[1];
+          hexValue43 = (parseInt(one142 + one141, 16) * 0.001).toFixed(3);
+        }
+      }
+      if (segment.startsWith('115:')) {
+        const words = segment.split(' ').map((word) => word.trim());
+        if (words.length >= 8) {
+          for (let i = 0; i < 3; i++) {
+            let index1 = 2 + i * 2;
+            let index2 = 3 + i * 2;
+            let one16 = words[index1];
+            let hexValue = (
+              parseInt(words[index2] + one16, 16) * 0.001
+            ).toFixed(3);
+            // 변수에 값을 할당
+            if (i === 0) {
+              one143 = one16;
+              hexValue44 = hexValue;
+            } else if (i === 1) {
+              one145 = one16;
+              hexValue45 = hexValue;
+            } else if (i === 2) {
+              one147 = one16;
+              hexValue46 = hexValue;
+            }
+          }
+        }
+      }
+
       if (segment.startsWith('116:')) {
         const words = segment.split(' ').map((word) => word.trim());
         if (words.length >= 3) {
           one161 = words[0].substring(4);
-          one162 = words[1];
-          hexValue1 = (
-            parseInt(one162, 16) +
-            parseInt(one161, 16) / 10
-          ).toFixed(1);
+          // one162 = words[1];
+          hexValue1 = (parseInt(one161, 16) / 10).toFixed(1);
           // 16진수를 10진수로 변환
         }
       }
@@ -171,13 +421,8 @@ const getData = async () => {
         if (words.length >= 8) {
           for (let i = 0; i < 3; i++) {
             let index1 = 2 + i * 2;
-            let index2 = 3 + i * 2;
             let one16 = words[index1];
-            let hexValue = (
-              parseInt(words[index2], 16) +
-              parseInt(one16, 16) / 10
-            ).toFixed(1);
-
+            let hexValue = (parseInt(one16, 16) / 10).toFixed(1);
             // 변수에 값을 할당
             if (i === 0) {
               one163 = one16;
@@ -196,11 +441,7 @@ const getData = async () => {
         const words = segment.split(' ').map((word) => word.trim());
         if (words.length >= 3) {
           one171 = words[0].substring(4);
-          one172 = words[1];
-          hexValue5 = (
-            parseInt(one172, 16) +
-            parseInt(one171, 16) / 10
-          ).toFixed(1);
+          hexValue5 = (parseInt(one171, 16) / 10).toFixed(1);
           // 16진수를 10진수로 변환
         }
       }
@@ -209,13 +450,8 @@ const getData = async () => {
         if (words.length >= 8) {
           for (let i = 0; i < 3; i++) {
             let index1 = 2 + i * 2;
-            let index2 = 3 + i * 2;
             let one17 = words[index1];
-            let hexValue = (
-              parseInt(words[index2], 16) +
-              parseInt(one17, 16) / 10
-            ).toFixed(1);
-
+            let hexValue = (parseInt(one17, 16) / 10).toFixed(1);
             // 변수에 값을 할당
             if (i === 0) {
               one173 = one17;
@@ -234,11 +470,8 @@ const getData = async () => {
         const words = segment.split(' ').map((word) => word.trim());
         if (words.length >= 3) {
           one181 = words[0].substring(4);
-          one182 = words[1];
-          hexValue9 = (
-            parseInt(one182, 16) +
-            parseInt(one181, 16) / 10
-          ).toFixed(1);
+
+          hexValue9 = (parseInt(one181, 16) / 10).toFixed(1);
           // 16진수를 10진수로 변환
         }
       }
@@ -247,12 +480,9 @@ const getData = async () => {
         if (words.length >= 8) {
           for (let i = 0; i < 3; i++) {
             let index1 = 2 + i * 2;
-            let index2 = 3 + i * 2;
+
             let one18 = words[index1];
-            let hexValue = (
-              parseInt(words[index2], 16) +
-              parseInt(one18, 16) / 10
-            ).toFixed(1);
+            let hexValue = (parseInt(one18, 16) / 10).toFixed(1);
 
             // 변수에 값을 할당
             if (i === 0) {
@@ -273,11 +503,8 @@ const getData = async () => {
         const words = segment.split(' ').map((word) => word.trim());
         if (words.length >= 3) {
           one191 = words[0].substring(4);
-          one192 = words[1];
-          hexValue13 = (
-            parseInt(one192, 16) +
-            parseInt(one191, 16) / 10
-          ).toFixed(1);
+
+          hexValue13 = (parseInt(one191, 16) / 10).toFixed(1);
           // 16진수를 10진수로 변환
         }
       }
@@ -286,12 +513,9 @@ const getData = async () => {
         if (words.length >= 8) {
           for (let i = 0; i < 3; i++) {
             let index1 = 2 + i * 2;
-            let index2 = 3 + i * 2;
+
             let one19 = words[index1];
-            let hexValue = (
-              parseInt(words[index2], 16) +
-              parseInt(one19, 16) / 10
-            ).toFixed(1);
+            let hexValue = (parseInt(one19, 16) / 10).toFixed(1);
 
             // 변수에 값을 할당
             if (i === 0) {
@@ -311,11 +535,8 @@ const getData = async () => {
         const words = segment.split(' ').map((word) => word.trim());
         if (words.length >= 3) {
           one1A1 = words[0].substring(4);
-          one1A2 = words[1];
-          hexValue17 = (
-            parseInt(one1A2, 16) +
-            parseInt(one1A1, 16) / 10
-          ).toFixed(1);
+
+          hexValue17 = (parseInt(one1A1, 16) / 10).toFixed(1);
           // 16진수를 10진수로 변환
         }
       }
@@ -324,12 +545,9 @@ const getData = async () => {
         if (words.length >= 8) {
           for (let i = 0; i < 3; i++) {
             let index1 = 2 + i * 2;
-            let index2 = 3 + i * 2;
+
             let one11a = words[index1];
-            let hexValue = (
-              parseInt(words[index2], 16) +
-              parseInt(one11a, 16) / 10
-            ).toFixed(1);
+            let hexValue = (parseInt(one11a, 16) / 10).toFixed(1);
 
             // 변수에 값을 할당
             if (i === 0) {
@@ -349,11 +567,8 @@ const getData = async () => {
         const words = segment.split(' ').map((word) => word.trim());
         if (words.length >= 3) {
           one1B1 = words[0].substring(4);
-          one1B2 = words[1];
-          hexValue21 = (
-            parseInt(one1B2, 16) +
-            parseInt(one1B1, 16) / 10
-          ).toFixed(1);
+
+          hexValue21 = (parseInt(one1B1, 16) / 10).toFixed(1);
           // 16진수를 10진수로 변환
         }
       }
@@ -362,10 +577,7 @@ const getData = async () => {
         if (words.length >= 3) {
           one1B3 = words[2];
           one1B4 = words[3];
-          hexValue22 = (
-            parseInt(one1B4, 16) +
-            parseInt(one1B3, 16) / 10
-          ).toFixed(1);
+          hexValue22 = (parseInt(one1B3, 16) / 10).toFixed(1);
           // 16진수를 10진수로 변환
           break;
         }
@@ -374,6 +586,43 @@ const getData = async () => {
 
     console.log('Rack Number/', eighty);
     console.log('Rack 전체의 평균 전압/', hexValue);
+
+    console.log(
+      'cell 1,2,3,4 전압/',
+      hexValue23,
+      hexValue24,
+      hexValue25,
+      hexValue26
+    );
+    console.log(
+      'cell 5,6,7,8 전압/',
+      hexValue27,
+      hexValue28,
+      hexValue29,
+      hexValue30
+    );
+    console.log(
+      'cell 9,10,11,12 전압/',
+      hexValue31,
+      hexValue32,
+      hexValue33,
+      hexValue34
+    );
+    console.log(
+      'cell 13,14,15,16 전압/',
+      hexValue35,
+      hexValue36,
+      hexValue37,
+      hexValue38
+    );
+    console.log(
+      'cell 17,18,19,20 전압/',
+      hexValue39,
+      hexValue40,
+      hexValue41,
+      hexValue42
+    );
+    console.log('cell 21,22 전압/', hexValue43, hexValue44);
     console.log(
       'cell 1,2,3,4 온도/',
       hexValue1,
