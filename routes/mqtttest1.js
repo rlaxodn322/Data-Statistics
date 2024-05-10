@@ -110,6 +110,15 @@ const getData = async () => {
       hexValue46,
       hexValue47,
       hexValue48,
+      hexValue49,
+      hexValue50,
+      one021,
+      one022,
+      one023,
+      one024,
+      one025,
+      one026,
+      one027,
       one101,
       one102,
       one103,
@@ -248,6 +257,31 @@ const getData = async () => {
       const type = words[0].substring(0, 4); // 세그먼트 타입 추출
 
       switch (type) {
+        case '102:':
+          if (words.length >= 8) {
+            one021 = words[0].substring(4);
+            one022 = words[1];
+            hexValue48 = (parseInt(one022 + one021, 16) * 0.1).toFixed(1);
+
+            for (let i = 0; i < 2; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one16 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one16, 16) * 0.01
+              ).toFixed(1);
+
+              if (i === 0) {
+                one023 = one16;
+                hexValue49 = hexValue;
+              } else if (i === 1) {
+                one025 = one16;
+                hexValue50 = hexValue;
+              }
+            }
+          }
+          break;
+
         case '110:':
           if (words.length >= 8) {
             one101 = words[0].substring(4);
@@ -569,6 +603,9 @@ const getData = async () => {
     console.log('Rack 전체의 평균 전류/', hexValue45);
     console.log('Rack 전체의 합산 전류/', hexValue46);
     console.log('Rack 전체의 평균 파워/', hexValue47);
+    console.log('Rack RealSOC/', hexValue48);
+    console.log('Rack SOH/', hexValue49);
+    console.log('Rack UserSOC/', hexValue50);
 
     console.log(
       'cell 전압/',
