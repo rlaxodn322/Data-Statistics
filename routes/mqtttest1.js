@@ -48,8 +48,8 @@ const getData = async () => {
     const segments = canData.split('  ').map((segment) => segment.trim()); // can_data를 파싱하여 배열로 변환
     const serial_code = jsonData.serial_code; // can_data 필드 가져오기
 
-    console.log(serial_code);
-    console.log('가장 최근 데이터의 시간:', times);
+    // console.log(serial_code);
+    // console.log('가장 최근 데이터의 시간:', times);
     // console.log('can_data:', segments);
 
     let eighty,
@@ -598,66 +598,125 @@ const getData = async () => {
           break;
       }
     }
-    console.log('Rack Number/', eighty);
-    console.log('Rack 전체의 평균 전압/', hexValue);
-    console.log('Rack 전체의 평균 전류/', hexValue45);
-    console.log('Rack 전체의 합산 전류/', hexValue46);
-    console.log('Rack 전체의 평균 파워/', hexValue47);
-    console.log('Rack RealSOC/', hexValue48);
-    console.log('Rack SOH/', hexValue49);
-    console.log('Rack UserSOC/', hexValue50);
+    // console.log('Rack Number/', eighty);
+    // console.log('Rack 전체의 평균 전압/', hexValue);
+    // console.log('Rack 전체의 평균 전류/', hexValue45);
+    // console.log('Rack 전체의 합산 전류/', hexValue46);
+    // console.log('Rack 전체의 평균 파워/', hexValue47);
+    // console.log('Rack RealSOC/', hexValue48);
+    // console.log('Rack SOH/', hexValue49);
+    // console.log('Rack UserSOC/', hexValue50);
 
-    console.log(
-      'cell 전압/',
-      hexValue23,
-      hexValue24,
-      hexValue25,
-      hexValue26,
-      hexValue27,
-      hexValue28,
-      hexValue29,
-      hexValue30,
-      hexValue31,
-      hexValue32,
-      hexValue33,
-      hexValue34,
-      hexValue35,
-      hexValue36,
-      hexValue37,
-      hexValue38,
-      hexValue39,
-      hexValue40,
-      hexValue41,
-      hexValue42,
-      hexValue43,
-      hexValue44
-    );
+    // console.log(
+    //   'cell 전압/',
+    //   hexValue23,
+    //   hexValue24,
+    //   hexValue25,
+    //   hexValue26,
+    //   hexValue27,
+    //   hexValue28,
+    //   hexValue29,
+    //   hexValue30,
+    //   hexValue31,
+    //   hexValue32,
+    //   hexValue33,
+    //   hexValue34,
+    //   hexValue35,
+    //   hexValue36,
+    //   hexValue37,
+    //   hexValue38,
+    //   hexValue39,
+    //   hexValue40,
+    //   hexValue41,
+    //   hexValue42,
+    //   hexValue43,
+    //   hexValue44
+    // );
 
-    console.log(
-      'cell  온도/',
-      hexValue1,
-      hexValue2,
-      hexValue3,
-      hexValue4,
-      hexValue5,
-      hexValue6,
-      hexValue7,
-      hexValue8,
-      hexValue9,
-      hexValue10,
-      hexValue11,
-      hexValue12,
-      hexValue13,
-      hexValue14,
-      hexValue15,
-      hexValue16,
-      hexValue17,
-      hexValue18,
-      hexValue19,
-      hexValue20,
-      hexValue21,
-      hexValue22
-    );
+    // console.log(
+    //   'cell  온도/',
+    //   hexValue1,
+    //   hexValue2,
+    //   hexValue3,
+    //   hexValue4,
+    //   hexValue5,
+    //   hexValue6,
+    //   hexValue7,
+    //   hexValue8,
+    //   hexValue9,
+    //   hexValue10,
+    //   hexValue11,
+    //   hexValue12,
+    //   hexValue13,
+    //   hexValue14,
+    //   hexValue15,
+    //   hexValue16,
+    //   hexValue17,
+    //   hexValue18,
+    //   hexValue19,
+    //   hexValue20,
+    //   hexValue21,
+    //   hexValue22
+    // );
+    let jsonData1 = {};
+    jsonData1.serial_code = serial_code;
+    jsonData1.time = times;
+    jsonData1.RackNumber = eighty;
+    jsonData1.RackAvgVolt = hexValue;
+    jsonData1.RackAvgCurr = hexValue45;
+    jsonData1.RackSumCurr = hexValue46;
+    jsonData1.RackSumPower = hexValue47;
+    jsonData1.RackRealSOC = hexValue48;
+    jsonData1.RackSOH = hexValue49;
+    jsonData1.UserSOC = hexValue50;
+    jsonData1.CellVolt01 = hexValue23;
+    jsonData1.CellVolt02 = hexValue24;
+    jsonData1.CellVolt03 = hexValue25;
+    jsonData1.CellVolt04 = hexValue26;
+    jsonData1.CellVolt05 = hexValue27;
+    jsonData1.CellVolt06 = hexValue28;
+    jsonData1.CellVolt07 = hexValue29;
+    jsonData1.CellVolt08 = hexValue30;
+    jsonData1.CellVolt09 = hexValue31;
+    jsonData1.CellVolt10 = hexValue32;
+    jsonData1.CellVolt11 = hexValue33;
+    jsonData1.CellVolt12 = hexValue34;
+    jsonData1.CellVolt13 = hexValue35;
+    jsonData1.CellVolt14 = hexValue36;
+    jsonData1.CellVolt15 = hexValue37;
+    jsonData1.CellVolt16 = hexValue38;
+    jsonData1.CellVolt17 = hexValue39;
+    jsonData1.CellVolt18 = hexValue40;
+    jsonData1.CellVolt19 = hexValue41;
+    jsonData1.CellVolt20 = hexValue42;
+    jsonData1.CellVolt21 = hexValue43;
+    jsonData1.CellVolt22 = hexValue44;
+    jsonData1.CellTemp01 = hexValue1;
+    jsonData1.CellTemp02 = hexValue2;
+    jsonData1.CellTemp03 = hexValue3;
+    jsonData1.CellTemp04 = hexValue4;
+    jsonData1.CellTemp05 = hexValue5;
+    jsonData1.CellTemp06 = hexValue6;
+    jsonData1.CellTemp07 = hexValue7;
+    jsonData1.CellTemp08 = hexValue8;
+    jsonData1.CellTemp09 = hexValue9;
+    jsonData1.CellTemp10 = hexValue10;
+    jsonData1.CellTemp11 = hexValue11;
+    jsonData1.CellTemp12 = hexValue12;
+    jsonData1.CellTemp13 = hexValue13;
+    jsonData1.CellTemp14 = hexValue14;
+    jsonData1.CellTemp15 = hexValue15;
+    jsonData1.CellTemp16 = hexValue16;
+    jsonData1.CellTemp17 = hexValue17;
+    jsonData1.CellTemp18 = hexValue18;
+    jsonData1.CellTemp19 = hexValue19;
+    jsonData1.CellTemp20 = hexValue20;
+    jsonData1.CellTemp21 = hexValue21;
+    jsonData1.CellTemp22 = hexValue22;
+    let jsonString = JSON.stringify(jsonData1);
+    console.log(jsonString);
+    // const data1 = JSON.parse(jsonString);
+    // console.log(data1.serial_code);
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
     return null;
