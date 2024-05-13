@@ -206,7 +206,8 @@ const getData = async () => {
       hexValue117,
       hexValue118,
       hexValue119,
-      hexValue120;
+      hexValue120,
+      hexValue121;
 
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
@@ -247,6 +248,25 @@ const getData = async () => {
             );
           }
           break;
+        case '82:':
+          let one = words[0];
+          let one1 = words[1];
+          let one2 = words[2];
+          let one3 = words[3];
+          let one4 = words[4];
+          let one5 = words[5];
+          let one6 = words[6];
+          let one7 = words[7];
+          let oneone = parseInt(one, 10);
+          let one11 = parseInt(one, 10);
+          let one22 = parseInt(one, 10);
+          let one33 = parseInt(one, 10);
+          let one44 = parseInt(one, 10);
+          let one55 = parseInt(one, 10);
+          let one66 = parseInt(one, 10);
+          let one77 = parseInt(one, 10);
+
+          hexValue121 = one4.toString(2);
       }
     }
     for (const segment of segments) {
@@ -1030,8 +1050,9 @@ const getData = async () => {
     jsonData1.TrayCellTemp2 = `${hexValue91} ${hexValue92} ${hexValue93} ${hexValue94} ${hexValue95} ${hexValue96} ${hexValue97} ${hexValue98} ${hexValue99} ${hexValue100} ${hexValue101} ${hexValue102} ${hexValue103} ${hexValue104} ${hexValue105} ${hexValue106} ${hexValue107} ${hexValue108} ${hexValue109} ${hexValue110}`;
 
     let jsonString = JSON.stringify(jsonData1);
-    await insertJsonToDynamoDB(jsonString);
-    console.log(jsonString);
+    // await insertJsonToDynamoDB(jsonString);
+    // console.log(jsonString);
+    console.log(hexValue121);
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
     return null;
@@ -1047,7 +1068,7 @@ setInterval(async () => {
   } catch (error) {
     console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
   }
-}, 5000); // 1000밀리초 (1초)마다 getData 함수 호출
+}, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
 
 // /getdata 엔드포인트 정의
 router.get('/getdata', async (req, res) => {

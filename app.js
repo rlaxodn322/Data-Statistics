@@ -9,7 +9,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const passport = require('passport');
 const app = express();
-const mqttRouter = require('./routes/mqtttest1 copy');
+const mqttRouter = require('./routes/mqtttest1 copy2');
 
 dotenv.config();
 app.set('port', process.env.PORT || 3000);
@@ -55,7 +55,7 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/mqtttest1 copy', mqttRouter);
+app.use('/mqtttest1 copy2', mqttRouter);
 
 // 에러 처리 미들웨어
 app.use((err, req, res, next) => {
