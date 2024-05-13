@@ -16,8 +16,43 @@ AWS.config.update({
 });
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
+const dynamoDBNew = new AWS.DynamoDB.DocumentClient({
+  region: 'ap-northeast-2',
+});
 
 const tableName = 'battery001';
+const newTableName = 'Test';
+const insertJsonToDynamoDB = async (jsonString) => {
+  try {
+    const data = JSON.parse(jsonString); // JSON 문자열 파싱
+
+    // clientId 필드를 추가
+    data.clientId = 'car001'; // 예시: 실제 clientId 값으로 대체
+
+    // timestamp을 숫자형으로 변환 (Unix timestamp 또는 millisecond 등)
+    const timestamp = new Date().getTime(); // 현재 시간을 millisecond 단위로 가져옴
+
+    // DynamoDB에 삽입할 아이템 생성
+    const item = {
+      clientId: data.clientId, // 파티션 키
+      timestamp: timestamp, // 정렬 키 (숫자형으로 변환된 timestamp)
+      RackNumber: data.RackNumber,
+      data: data, // 기존 데이터 포함
+    };
+
+    const params = {
+      TableName: newTableName,
+      Item: item, // DynamoDB에 삽입할 아이템
+    };
+
+    await dynamoDBNew.put(params).promise(); // DynamoDB에 데이터 삽입
+
+    console.log('데이터가 성공적으로 DynamoDB에 추가되었습니다.');
+  } catch (error) {
+    console.error('DynamoDB에 데이터를 추가하는 중 오류 발생:', error);
+    throw error;
+  }
+};
 
 // 데이터 가져오는 함수 정의
 const getData = async () => {
@@ -955,11 +990,9 @@ const getData = async () => {
           break;
       }
     }
-    // console.log(hexValue59, hexValue60, hexValue61, hexValue62);
-    // console.log(hexValue63, hexValue64, hexValue65, hexValue66);
 
     let jsonData1 = {};
-    jsonData1.serial_code = serial_code;
+    // jsonData1.serial_code = serial_code;
     jsonData1.time = times;
     jsonData1.RackNumber = hex;
     jsonData1.RackAvgVolt = hexValue;
@@ -999,17 +1032,10 @@ const getData = async () => {
     jsonData1.TrayCellVolt2 = `${hexValue67} ${hexValue68} ${hexValue69} ${hexValue70} ${hexValue71} ${hexValue72} ${hexValue73} ${hexValue74} ${hexValue75} ${hexValue76} ${hexValue77} ${hexValue78} ${hexValue79} ${hexValue80} ${hexValue81} ${hexValue82} ${hexValue83} ${hexValue84} ${hexValue85} ${hexValue86} ${hexValue87} ${hexValue88}`;
 
     jsonData1.TrayCellTemp2 = `${hexValue91} ${hexValue92} ${hexValue93} ${hexValue94} ${hexValue95} ${hexValue96} ${hexValue97} ${hexValue98} ${hexValue99} ${hexValue100} ${hexValue101} ${hexValue102} ${hexValue103} ${hexValue104} ${hexValue105} ${hexValue106} ${hexValue107} ${hexValue108} ${hexValue109} ${hexValue110}`;
+    
     let jsonString = JSON.stringify(jsonData1);
-
+    await insertJsonToDynamoDB(jsonString);
     console.log(jsonString);
-    // TrayCellVolt 문자열을 공백으로 분리하여 배열로 변환
-    // const trayCellVoltArray = jsonData1.TrayCellVolt.split(' ');
-    // // 첫 번째 값 추출
-    // const firstTrayCellVolt = trayCellVoltArray[2];
-    // // 첫 번째 TrayCellVolt 값 출력
-    // console.log(firstTrayCellVolt); // 출력: 3.690
-    // const data1 = JSON.parse(jsonString);
-    // console.log(data1.serial_code);
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
     return null;
@@ -1025,7 +1051,7 @@ setInterval(async () => {
   } catch (error) {
     console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
   }
-}, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
+}, 5000); // 1000밀리초 (1초)마다 getData 함수 호출
 
 // /getdata 엔드포인트 정의
 router.get('/getdata', async (req, res) => {
