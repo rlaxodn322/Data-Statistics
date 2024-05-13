@@ -52,15 +52,7 @@ const getData = async () => {
     // console.log('가장 최근 데이터의 시간:', times);
     // console.log('can_data:', segments);
 
-    let eighty,
-      eightyone1,
-      eightyone2,
-      eightyone3,
-      eightyone4,
-      eightyone5,
-      eightyone6,
-      eightyone7,
-      eightyone8,
+    let hex,
       hexValue,
       hexValue1,
       hexValue2,
@@ -112,101 +104,23 @@ const getData = async () => {
       hexValue48,
       hexValue49,
       hexValue50,
-      one021,
-      one022,
-      one023,
-      one024,
-      one025,
-      one026,
-      one027,
-      one101,
-      one102,
-      one103,
-      one104,
-      one105,
-      one106,
-      one107,
-      one108,
-      one111,
-      one112,
-      one113,
-      one114,
-      one115,
-      one116,
-      one117,
-      one118,
-      one121,
-      one122,
-      one123,
-      one124,
-      one125,
-      one126,
-      one127,
-      one128,
-      one131,
-      one132,
-      one133,
-      one134,
-      one135,
-      one136,
-      one137,
-      one138,
-      one141,
-      one142,
-      one143,
-      one144,
-      one145,
-      one146,
-      one147,
-      one148,
-      one161,
-      one162,
-      one163,
-      one164,
-      one165,
-      one166,
-      one167,
-      one168,
-      one171,
-      one172,
-      one173,
-      one174,
-      one175,
-      one176,
-      one177,
-      one178,
-      one181,
-      one182,
-      one183,
-      one184,
-      one185,
-      one186,
-      one187,
-      one188,
-      one191,
-      one192,
-      one193,
-      one194,
-      one195,
-      one196,
-      one197,
-      one198,
-      one1A1,
-      one1A2,
-      one1A3,
-      one1A4,
-      one1A5,
-      one1A6,
-      one1A7,
-      one1A8,
-      one1B1,
-      one1B2,
-      one1B3,
-      one1B4,
-      one1B5,
-      one1B6,
-      one1B7,
-      one1B8;
+      hexValue51,
+      hexValue52,
+      hexValue53,
+      hexValue54,
+      hexValue55,
+      hexValue56,
+      hexValue57,
+      hexValue58,
+      hexValue59,
+      hexValue60,
+      hexValue61,
+      hexValue62,
+      hexValue63,
+      hexValue64,
+      hexValue65,
+      hexValue66,
+      hexValue67;
 
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
@@ -215,33 +129,34 @@ const getData = async () => {
       switch (type) {
         case '80:':
           if (words.length >= 3) {
-            eighty = words[2];
+            hex = words[2];
           }
           break;
 
         case '81:':
           if (words.length >= 2) {
-            eightyone1 = words[0].substring(3);
-            eightyone2 = words[1];
+            let eightyone1 = words[0].substring(3);
+            let eightyone2 = words[1];
+
             hexValue = (parseInt(eightyone2 + eightyone1, 16) * 0.1).toFixed(1);
           }
           if (words.length >= 2) {
-            eightyone3 = words[2];
-            eightyone4 = words[3];
+            let eightyone3 = words[2];
+            let eightyone4 = words[3];
             hexValue45 = (parseInt(eightyone4 + eightyone3, 16) * 0.1).toFixed(
               1
             );
           }
           if (words.length >= 2) {
-            eightyone5 = words[4];
-            eightyone6 = words[5];
+            let eightyone5 = words[4];
+            let eightyone6 = words[5];
             hexValue46 = (parseInt(eightyone6 + eightyone5, 16) * 0.1).toFixed(
               1
             );
           }
           if (words.length >= 2) {
-            eightyone7 = words[6];
-            eightyone8 = words[7];
+            let eightyone7 = words[6];
+            let eightyone8 = words[7];
             hexValue47 = (parseInt(eightyone8 + eightyone7, 16) * 0.1).toFixed(
               1
             );
@@ -259,8 +174,8 @@ const getData = async () => {
       switch (type) {
         case '102:':
           if (words.length >= 8) {
-            one021 = words[0].substring(4);
-            one022 = words[1];
+            let one021 = words[0].substring(4);
+            let one022 = words[1];
             hexValue48 = (parseInt(one022 + one021, 16) * 0.1).toFixed(1);
 
             for (let i = 0; i < 2; i++) {
@@ -272,10 +187,8 @@ const getData = async () => {
               ).toFixed(1);
 
               if (i === 0) {
-                one023 = one16;
                 hexValue49 = hexValue;
               } else if (i === 1) {
-                one025 = one16;
                 hexValue50 = hexValue;
               }
             }
@@ -284,8 +197,8 @@ const getData = async () => {
 
         case '110:':
           if (words.length >= 8) {
-            one101 = words[0].substring(4);
-            one102 = words[1];
+            let one101 = words[0].substring(4);
+            let one102 = words[1];
             hexValue23 = (parseInt(one102 + one101, 16) * 0.001).toFixed(3);
 
             for (let i = 0; i < 3; i++) {
@@ -297,13 +210,10 @@ const getData = async () => {
               ).toFixed(3);
 
               if (i === 0) {
-                one103 = one16;
                 hexValue24 = hexValue;
               } else if (i === 1) {
-                one105 = one16;
                 hexValue25 = hexValue;
               } else if (i === 2) {
-                one107 = one16;
                 hexValue26 = hexValue;
               }
             }
@@ -312,8 +222,8 @@ const getData = async () => {
 
         case '111:':
           if (words.length >= 8) {
-            one111 = words[0].substring(4);
-            one112 = words[1];
+            let one111 = words[0].substring(4);
+            let one112 = words[1];
             hexValue27 = (parseInt(one112 + one111, 16) * 0.001).toFixed(3);
 
             for (let i = 0; i < 3; i++) {
@@ -325,13 +235,10 @@ const getData = async () => {
               ).toFixed(3);
 
               if (i === 0) {
-                one113 = one16;
                 hexValue28 = hexValue;
               } else if (i === 1) {
-                one115 = one16;
                 hexValue29 = hexValue;
               } else if (i === 2) {
-                one117 = one16;
                 hexValue30 = hexValue;
               }
             }
@@ -339,8 +246,8 @@ const getData = async () => {
           break;
         case '112:':
           if (words.length >= 8) {
-            one121 = words[0].substring(4);
-            one122 = words[1];
+            let one121 = words[0].substring(4);
+            let one122 = words[1];
             hexValue31 = (parseInt(one122 + one121, 16) * 0.001).toFixed(3);
 
             for (let i = 0; i < 3; i++) {
@@ -352,13 +259,10 @@ const getData = async () => {
               ).toFixed(3);
 
               if (i === 0) {
-                one123 = one16;
                 hexValue32 = hexValue;
               } else if (i === 1) {
-                one125 = one16;
                 hexValue33 = hexValue;
               } else if (i === 2) {
-                one127 = one16;
                 hexValue34 = hexValue;
               }
             }
@@ -366,8 +270,8 @@ const getData = async () => {
           break;
         case '113:':
           if (words.length >= 8) {
-            one131 = words[0].substring(4);
-            one132 = words[1];
+            let one131 = words[0].substring(4);
+            let one132 = words[1];
             hexValue35 = (parseInt(one132 + one131, 16) * 0.001).toFixed(3);
 
             for (let i = 0; i < 3; i++) {
@@ -379,13 +283,10 @@ const getData = async () => {
               ).toFixed(3);
 
               if (i === 0) {
-                one133 = one16;
                 hexValue36 = hexValue;
               } else if (i === 1) {
-                one135 = one16;
                 hexValue37 = hexValue;
               } else if (i === 2) {
-                one137 = one16;
                 hexValue38 = hexValue;
               }
             }
@@ -393,8 +294,8 @@ const getData = async () => {
           break;
         case '114:':
           if (words.length >= 8) {
-            one131 = words[0].substring(4);
-            one132 = words[1];
+            let one131 = words[0].substring(4);
+            let one132 = words[1];
             hexValue39 = (parseInt(one132 + one131, 16) * 0.001).toFixed(3);
 
             for (let i = 0; i < 3; i++) {
@@ -406,13 +307,10 @@ const getData = async () => {
               ).toFixed(3);
 
               if (i === 0) {
-                one133 = one16;
                 hexValue40 = hexValue;
               } else if (i === 1) {
-                one135 = one16;
                 hexValue41 = hexValue;
               } else if (i === 2) {
-                one137 = one16;
                 hexValue42 = hexValue;
               }
             }
@@ -420,8 +318,8 @@ const getData = async () => {
           break;
         case '115:':
           if (words.length >= 8) {
-            one141 = words[0].substring(4);
-            one142 = words[1];
+            let one141 = words[0].substring(4);
+            let one142 = words[1];
             hexValue43 = (parseInt(one142 + one141, 16) * 0.001).toFixed(3);
 
             for (let i = 0; i < 3; i++) {
@@ -433,13 +331,10 @@ const getData = async () => {
               ).toFixed(3);
 
               if (i === 0) {
-                one143 = one16;
                 hexValue44 = hexValue;
               } else if (i === 1) {
-                one145 = one16;
                 hexValue45 = hexValue;
               } else if (i === 2) {
-                one147 = one16;
                 hexValue46 = hexValue;
               }
             }
@@ -448,7 +343,7 @@ const getData = async () => {
 
         case '116:':
           if (words.length >= 8) {
-            one161 = words[0].substring(4);
+            let one161 = words[0].substring(4);
             // one162 = words[1];
             hexValue1 = (parseInt(one161, 16) / 10).toFixed(1);
             // 16진수를 10진수로 변환
@@ -459,13 +354,10 @@ const getData = async () => {
               const hexValue = (parseInt(one16, 16) / 10).toFixed(1);
               // 변수에 값을 할당
               if (i === 0) {
-                one163 = one16;
                 hexValue2 = hexValue;
               } else if (i === 1) {
-                one165 = one16;
                 hexValue3 = hexValue;
               } else if (i === 2) {
-                one167 = one16;
                 hexValue4 = hexValue;
               }
             }
@@ -474,7 +366,7 @@ const getData = async () => {
 
         case '117:':
           if (words.length >= 8) {
-            one171 = words[0].substring(4);
+            let one171 = words[0].substring(4);
             hexValue5 = (parseInt(one171, 16) / 10).toFixed(1);
             // 16진수를 10진수로 변환
 
@@ -484,13 +376,10 @@ const getData = async () => {
               let hexValue = (parseInt(one17, 16) / 10).toFixed(1);
               // 변수에 값을 할당
               if (i === 0) {
-                one173 = one17;
                 hexValue6 = hexValue;
               } else if (i === 1) {
-                one175 = one17;
                 hexValue7 = hexValue;
               } else if (i === 2) {
-                one177 = one17;
                 hexValue8 = hexValue;
               }
             }
@@ -498,7 +387,7 @@ const getData = async () => {
           break;
         case '118:':
           if (words.length >= 8) {
-            one181 = words[0].substring(4);
+            let one181 = words[0].substring(4);
 
             hexValue9 = (parseInt(one181, 16) / 10).toFixed(1);
             // 16진수를 10진수로 변환
@@ -511,13 +400,10 @@ const getData = async () => {
 
               // 변수에 값을 할당
               if (i === 0) {
-                one183 = one18;
                 hexValue10 = hexValue;
               } else if (i === 1) {
-                one185 = one18;
                 hexValue11 = hexValue;
               } else if (i === 2) {
-                one187 = one18;
                 hexValue12 = hexValue;
               }
             }
@@ -525,7 +411,7 @@ const getData = async () => {
           break;
         case '119:':
           if (words.length >= 8) {
-            one191 = words[0].substring(4);
+            let one191 = words[0].substring(4);
 
             hexValue13 = (parseInt(one191, 16) / 10).toFixed(1);
             // 16진수를 10진수로 변환
@@ -538,13 +424,10 @@ const getData = async () => {
 
               // 변수에 값을 할당
               if (i === 0) {
-                one193 = one19;
                 hexValue14 = hexValue;
               } else if (i === 1) {
-                one195 = one19;
                 hexValue15 = hexValue;
               } else if (i === 2) {
-                one197 = one19;
                 hexValue16 = hexValue;
               }
             }
@@ -552,7 +435,7 @@ const getData = async () => {
           break;
         case '11a:':
           if (words.length >= 8) {
-            one1A1 = words[0].substring(4);
+            let one1A1 = words[0].substring(4);
 
             hexValue17 = (parseInt(one1A1, 16) / 10).toFixed(1);
             // 16진수를 10진수로 변환
@@ -564,13 +447,10 @@ const getData = async () => {
 
               // 변수에 값을 할당
               if (i === 0) {
-                one1A3 = one11a;
                 hexValue18 = hexValue;
               } else if (i === 1) {
-                one1A5 = one11a;
                 hexValue19 = hexValue;
               } else if (i === 2) {
-                one1A7 = one11a;
                 hexValue20 = hexValue;
               }
             }
@@ -578,18 +458,67 @@ const getData = async () => {
           break;
         case '11b:':
           if (words.length >= 8) {
-            one1B1 = words[0].substring(4);
+            let one1B1 = words[0].substring(4);
 
             hexValue21 = (parseInt(one1B1, 16) / 10).toFixed(1);
             // 16진수를 10진수로 변환
             if (segment.startsWith('11b:')) {
               const words = segment.split(' ').map((word) => word.trim());
               if (words.length >= 3) {
-                one1B3 = words[2];
-                one1B4 = words[3];
+                let one1B3 = words[2];
+
                 hexValue22 = (parseInt(one1B3, 16) / 10).toFixed(1);
                 // 16진수를 10진수로 변환
                 break;
+              }
+            }
+          }
+          break;
+
+        case '11c:':
+          if (words.length >= 8) {
+            let one1 = words[0].substring(4);
+            let one2 = words[1];
+            hexValue51 = (parseInt(one2 + one1, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one3 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one3, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue52 = hexValue;
+              } else if (i === 1) {
+                hexValue53 = hexValue;
+              } else if (i === 2) {
+                hexValue54 = hexValue;
+              }
+            }
+          }
+          break;
+        case '11d:':
+          if (words.length >= 8) {
+            let one1 = words[0].substring(4);
+            let one2 = words[1];
+            hexValue55 = (parseInt(one2 + one1, 16) * 0.1).toFixed(1);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one3 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one3, 16) * 0.1
+              ).toFixed(1);
+
+              if (i === 0) {
+                hexValue56 = hexValue;
+              } else if (i === 1) {
+                hexValue57 = hexValue;
+              } else if (i === 2) {
+                hexValue58 = hexValue;
               }
             }
           }
@@ -598,70 +527,12 @@ const getData = async () => {
           break;
       }
     }
-    // console.log('Rack Number/', eighty);
-    // console.log('Rack 전체의 평균 전압/', hexValue);
-    // console.log('Rack 전체의 평균 전류/', hexValue45);
-    // console.log('Rack 전체의 합산 전류/', hexValue46);
-    // console.log('Rack 전체의 평균 파워/', hexValue47);
-    // console.log('Rack RealSOC/', hexValue48);
-    // console.log('Rack SOH/', hexValue49);
-    // console.log('Rack UserSOC/', hexValue50);
+    // console.log(hexValue55, hexValue56, hexValue57, hexValue58);
 
-    // console.log(
-    //   'cell 전압/',
-    //   hexValue23,
-    //   hexValue24,
-    //   hexValue25,
-    //   hexValue26,
-    //   hexValue27,
-    //   hexValue28,
-    //   hexValue29,
-    //   hexValue30,
-    //   hexValue31,
-    //   hexValue32,
-    //   hexValue33,
-    //   hexValue34,
-    //   hexValue35,
-    //   hexValue36,
-    //   hexValue37,
-    //   hexValue38,
-    //   hexValue39,
-    //   hexValue40,
-    //   hexValue41,
-    //   hexValue42,
-    //   hexValue43,
-    //   hexValue44
-    // );
-
-    // console.log(
-    //   'cell  온도/',
-    //   hexValue1,
-    //   hexValue2,
-    //   hexValue3,
-    //   hexValue4,
-    //   hexValue5,
-    //   hexValue6,
-    //   hexValue7,
-    //   hexValue8,
-    //   hexValue9,
-    //   hexValue10,
-    //   hexValue11,
-    //   hexValue12,
-    //   hexValue13,
-    //   hexValue14,
-    //   hexValue15,
-    //   hexValue16,
-    //   hexValue17,
-    //   hexValue18,
-    //   hexValue19,
-    //   hexValue20,
-    //   hexValue21,
-    //   hexValue22
-    // );
     let jsonData1 = {};
     jsonData1.serial_code = serial_code;
     jsonData1.time = times;
-    jsonData1.RackNumber = eighty;
+    jsonData1.RackNumber = hex;
     jsonData1.RackAvgVolt = hexValue;
     jsonData1.RackAvgCurr = hexValue45;
     jsonData1.RackSumCurr = hexValue46;
@@ -713,6 +584,14 @@ const getData = async () => {
     jsonData1.CellTemp20 = hexValue20;
     jsonData1.CellTemp21 = hexValue21;
     jsonData1.CellTemp22 = hexValue22;
+    jsonData1.CellAvgVolt = hexValue51;
+    jsonData1.CellMinVolt = hexValue52;
+    jsonData1.CellMaxVolt = hexValue53;
+    jsonData1.CellDifVolt = hexValue54;
+    jsonData1.CellAvgTemp = hexValue55;
+    jsonData1.CellMinTemp = hexValue56;
+    jsonData1.CellMaxTemp = hexValue57;
+    jsonData1.CellDifTemp = hexValue58;
     let jsonString = JSON.stringify(jsonData1);
     console.log(jsonString);
     // const data1 = JSON.parse(jsonString);
