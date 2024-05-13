@@ -257,16 +257,36 @@ const getData = async () => {
           let one5 = words[5];
           let one6 = words[6];
           let one7 = words[7];
-          let oneone = parseInt(one, 10);
-          let one11 = parseInt(one, 10);
-          let one22 = parseInt(one, 10);
-          let one33 = parseInt(one, 10);
-          let one44 = parseInt(one, 10);
-          let one55 = parseInt(one, 10);
-          let one66 = parseInt(one, 10);
-          let one77 = parseInt(one, 10);
+          let oneone = parseInt(one, 10).toString(2).padStart(8, '0');
+          let one11 = parseInt(one, 10).toString(2).padStart(8, '0');
+          let one22 = parseInt(one, 10).toString(2).padStart(8, '0');
+          let one33 = parseInt(one, 10).toString(2).padStart(8, '0');
+          let one44 = parseInt(one, 10).toString(2).padStart(8, '0');
+          let one55 = parseInt(one, 10).toString(2).padStart(8, '0');
+          let one66 = parseInt(one, 10).toString(2).padStart(8, '0');
+          let one77 = parseInt(one, 10).toString(2).padStart(8, '0');
 
-          hexValue121 = one4.toString(2);
+          oneone.charAt(7) === '1'
+            ? (hexValue121 = 'BMS READY')
+            : (hexValue121 = 'BMS NOT READY');
+          oneone.charAt(6) === '1'
+            ? (hexValue121 = 'BMS READY')
+            : (hexValue121 = 'BMS NOT READY');
+          oneone.charAt(5) === '1'
+            ? (hexValue121 = 'BMS READY')
+            : (hexValue121 = 'BMS NOT READY');
+          oneone.charAt(4) === '1'
+            ? (hexValue121 = 'BMS READY')
+            : (hexValue121 = 'BMS NOT READY');
+          oneone.charAt(3) === '1'
+            ? (hexValue121 = 'BMS READY')
+            : (hexValue121 = 'BMS NOT READY');
+          oneone.charAt(2) === '1'
+            ? (hexValue121 = 'BMS READY')
+            : (hexValue121 = 'BMS NOT READY');
+          oneone.charAt(1) === '1'
+            ? (hexValue121 = 'BMS READY')
+            : (hexValue121 = 'BMS NOT READY');
       }
     }
     for (const segment of segments) {
