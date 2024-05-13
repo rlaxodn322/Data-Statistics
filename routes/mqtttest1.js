@@ -120,7 +120,60 @@ const getData = async () => {
       hexValue64,
       hexValue65,
       hexValue66,
-      hexValue67;
+      hexValue67,
+      hexValue68,
+      hexValue69,
+      hexValue70,
+      hexValue71,
+      hexValue72,
+      hexValue73,
+      hexValue74,
+      hexValue75,
+      hexValue76,
+      hexValue77,
+      hexValue78,
+      hexValue79,
+      hexValue80,
+      hexValue81,
+      hexValue82,
+      hexValue83,
+      hexValue84,
+      hexValue85,
+      hexValue86,
+      hexValue87,
+      hexValue88,
+      hexValue89,
+      hexValue90,
+      hexValue91,
+      hexValue92,
+      hexValue93,
+      hexValue94,
+      hexValue95,
+      hexValue96,
+      hexValue97,
+      hexValue98,
+      hexValue99,
+      hexValue100,
+      hexValue101,
+      hexValue102,
+      hexValue103,
+      hexValue104,
+      hexValue105,
+      hexValue106,
+      hexValue107,
+      hexValue108,
+      hexValue109,
+      hexValue110,
+      hexValue111,
+      hexValue112,
+      hexValue113,
+      hexValue114,
+      hexValue115,
+      hexValue116,
+      hexValue117,
+      hexValue118,
+      hexValue119,
+      hexValue120;
 
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
@@ -137,7 +190,6 @@ const getData = async () => {
           if (words.length >= 2) {
             let eightyone1 = words[0].substring(3);
             let eightyone2 = words[1];
-
             hexValue = (parseInt(eightyone2 + eightyone1, 16) * 0.1).toFixed(1);
           }
           if (words.length >= 2) {
@@ -161,9 +213,6 @@ const getData = async () => {
               1
             );
           }
-          break;
-
-        default:
           break;
       }
     }
@@ -523,11 +572,389 @@ const getData = async () => {
             }
           }
           break;
+
+        //
+        case '103:':
+          if (words.length >= 8) {
+            let one1 = words[0].substring(4);
+            let one2 = words[1];
+            hexValue59 = (parseInt(one2 + one1, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one3 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one3, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue60 = hexValue;
+              } else if (i === 1) {
+                hexValue61 = hexValue;
+              } else if (i === 2) {
+                hexValue62 = hexValue;
+              }
+            }
+          }
+          break;
+        case '104:':
+          if (words.length >= 8) {
+            let one1 = words[0].substring(4);
+            let one2 = words[1];
+            hexValue63 = (parseInt(one2 + one1, 16) * 0.1).toFixed(1);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one3 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one3, 16) * 0.1
+              ).toFixed(1);
+
+              if (i === 0) {
+                hexValue64 = hexValue;
+              } else if (i === 1) {
+                hexValue65 = hexValue;
+              } else if (i === 2) {
+                hexValue66 = hexValue;
+              }
+            }
+          }
+          break;
+
+        //
+
+        case '120:':
+          if (words.length >= 8) {
+            let one101 = words[0].substring(4);
+            let one102 = words[1];
+            hexValue67 = (parseInt(one102 + one101, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one16 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one16, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue68 = hexValue;
+              } else if (i === 1) {
+                hexValue69 = hexValue;
+              } else if (i === 2) {
+                hexValue70 = hexValue;
+              }
+            }
+          }
+          break;
+
+        case '121:':
+          if (words.length >= 8) {
+            let one111 = words[0].substring(4);
+            let one112 = words[1];
+            hexValue71 = (parseInt(one112 + one111, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one16 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one16, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue72 = hexValue;
+              } else if (i === 1) {
+                hexValue73 = hexValue;
+              } else if (i === 2) {
+                hexValue74 = hexValue;
+              }
+            }
+          }
+          break;
+        case '122:':
+          if (words.length >= 8) {
+            let one121 = words[0].substring(4);
+            let one122 = words[1];
+            hexValue75 = (parseInt(one122 + one121, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one16 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one16, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue76 = hexValue;
+              } else if (i === 1) {
+                hexValue77 = hexValue;
+              } else if (i === 2) {
+                hexValue78 = hexValue;
+              }
+            }
+          }
+          break;
+        case '123:':
+          if (words.length >= 8) {
+            let one131 = words[0].substring(4);
+            let one132 = words[1];
+            hexValue79 = (parseInt(one132 + one131, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one16 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one16, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue80 = hexValue;
+              } else if (i === 1) {
+                hexValue81 = hexValue;
+              } else if (i === 2) {
+                hexValue82 = hexValue;
+              }
+            }
+          }
+          break;
+        case '124:':
+          if (words.length >= 8) {
+            let one131 = words[0].substring(4);
+            let one132 = words[1];
+            hexValue83 = (parseInt(one132 + one131, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one16 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one16, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue84 = hexValue;
+              } else if (i === 1) {
+                hexValue85 = hexValue;
+              } else if (i === 2) {
+                hexValue86 = hexValue;
+              }
+            }
+          }
+          break;
+        case '125:':
+          if (words.length >= 8) {
+            let one141 = words[0].substring(4);
+            let one142 = words[1];
+            hexValue87 = (parseInt(one142 + one141, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one16 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one16, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue88 = hexValue;
+              }
+            }
+          }
+          break;
+
+        case '126:':
+          if (words.length >= 8) {
+            let one161 = words[0].substring(4);
+            // one162 = words[1];
+            hexValue91 = (parseInt(one161, 16) / 10).toFixed(1);
+            // 16진수를 10진수로 변환
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const one16 = words[index1];
+              const hexValue = (parseInt(one16, 16) / 10).toFixed(1);
+              // 변수에 값을 할당
+              if (i === 0) {
+                hexValue92 = hexValue;
+              } else if (i === 1) {
+                hexValue93 = hexValue;
+              } else if (i === 2) {
+                hexValue94 = hexValue;
+              }
+            }
+          }
+          break;
+
+        case '127:':
+          if (words.length >= 8) {
+            let one171 = words[0].substring(4);
+            hexValue95 = (parseInt(one171, 16) / 10).toFixed(1);
+            // 16진수를 10진수로 변환
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              let one17 = words[index1];
+              let hexValue = (parseInt(one17, 16) / 10).toFixed(1);
+              // 변수에 값을 할당
+              if (i === 0) {
+                hexValue96 = hexValue;
+              } else if (i === 1) {
+                hexValue97 = hexValue;
+              } else if (i === 2) {
+                hexValue98 = hexValue;
+              }
+            }
+          }
+          break;
+        case '128:':
+          if (words.length >= 8) {
+            let one181 = words[0].substring(4);
+
+            hexValue99 = (parseInt(one181, 16) / 10).toFixed(1);
+            // 16진수를 10진수로 변환
+
+            for (let i = 0; i < 3; i++) {
+              let index1 = 2 + i * 2;
+
+              let one18 = words[index1];
+              let hexValue = (parseInt(one18, 16) / 10).toFixed(1);
+
+              // 변수에 값을 할당
+              if (i === 0) {
+                hexValue100 = hexValue;
+              } else if (i === 1) {
+                hexValue101 = hexValue;
+              } else if (i === 2) {
+                hexValue102 = hexValue;
+              }
+            }
+          }
+          break;
+        case '129:':
+          if (words.length >= 8) {
+            let one191 = words[0].substring(4);
+
+            hexValue103 = (parseInt(one191, 16) / 10).toFixed(1);
+            // 16진수를 10진수로 변환
+
+            for (let i = 0; i < 3; i++) {
+              let index1 = 2 + i * 2;
+
+              let one19 = words[index1];
+              let hexValue = (parseInt(one19, 16) / 10).toFixed(1);
+
+              // 변수에 값을 할당
+              if (i === 0) {
+                hexValue104 = hexValue;
+              } else if (i === 1) {
+                hexValue105 = hexValue;
+              } else if (i === 2) {
+                hexValue106 = hexValue;
+              }
+            }
+          }
+          break;
+        case '12a:':
+          if (words.length >= 8) {
+            let one1A1 = words[0].substring(4);
+
+            hexValue107 = (parseInt(one1A1, 16) / 10).toFixed(1);
+            // 16진수를 10진수로 변환
+            for (let i = 0; i < 3; i++) {
+              let index1 = 2 + i * 2;
+
+              let one11a = words[index1];
+              let hexValue = (parseInt(one11a, 16) / 10).toFixed(1);
+
+              // 변수에 값을 할당
+              if (i === 0) {
+                hexValue108 = hexValue;
+              } else if (i === 1) {
+                hexValue109 = hexValue;
+              } else if (i === 2) {
+                hexValue110 = hexValue;
+              }
+            }
+          }
+          break;
+        case '12b:':
+          if (words.length >= 8) {
+            let one1B1 = words[0].substring(4);
+
+            hexValue111 = (parseInt(one1B1, 16) / 10).toFixed(1);
+            // 16진수를 10진수로 변환
+            if (segment.startsWith('11b:')) {
+              const words = segment.split(' ').map((word) => word.trim());
+              if (words.length >= 3) {
+                let one1B3 = words[2];
+
+                hexValue112 = (parseInt(one1B3, 16) / 10).toFixed(1);
+                // 16진수를 10진수로 변환
+                break;
+              }
+            }
+          }
+          break;
+
+        case '12c:':
+          if (words.length >= 8) {
+            let one1 = words[0].substring(4);
+            let one2 = words[1];
+            hexValue113 = (parseInt(one2 + one1, 16) * 0.001).toFixed(3);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one3 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one3, 16) * 0.001
+              ).toFixed(3);
+
+              if (i === 0) {
+                hexValue114 = hexValue;
+              } else if (i === 1) {
+                hexValue115 = hexValue;
+              } else if (i === 2) {
+                hexValue116 = hexValue;
+              }
+            }
+          }
+          break;
+        case '12d:':
+          if (words.length >= 8) {
+            let one1 = words[0].substring(4);
+            let one2 = words[1];
+            hexValue117 = (parseInt(one2 + one1, 16) * 0.1).toFixed(1);
+
+            for (let i = 0; i < 3; i++) {
+              const index1 = 2 + i * 2;
+              const index2 = 3 + i * 2;
+              const one3 = words[index1];
+              const hexValue = (
+                parseInt(words[index2] + one3, 16) * 0.1
+              ).toFixed(1);
+
+              if (i === 0) {
+                hexValue118 = hexValue;
+              } else if (i === 1) {
+                hexValue119 = hexValue;
+              } else if (i === 2) {
+                hexValue120 = hexValue;
+              }
+            }
+          }
+          break;
         default:
           break;
       }
     }
-    // console.log(hexValue55, hexValue56, hexValue57, hexValue58);
+    // console.log(hexValue59, hexValue60, hexValue61, hexValue62);
+    // console.log(hexValue63, hexValue64, hexValue65, hexValue66);
 
     let jsonData1 = {};
     jsonData1.serial_code = serial_code;
@@ -540,60 +967,45 @@ const getData = async () => {
     jsonData1.RackRealSOC = hexValue48;
     jsonData1.RackSOH = hexValue49;
     jsonData1.UserSOC = hexValue50;
-    jsonData1.CellVolt01 = hexValue23;
-    jsonData1.CellVolt02 = hexValue24;
-    jsonData1.CellVolt03 = hexValue25;
-    jsonData1.CellVolt04 = hexValue26;
-    jsonData1.CellVolt05 = hexValue27;
-    jsonData1.CellVolt06 = hexValue28;
-    jsonData1.CellVolt07 = hexValue29;
-    jsonData1.CellVolt08 = hexValue30;
-    jsonData1.CellVolt09 = hexValue31;
-    jsonData1.CellVolt10 = hexValue32;
-    jsonData1.CellVolt11 = hexValue33;
-    jsonData1.CellVolt12 = hexValue34;
-    jsonData1.CellVolt13 = hexValue35;
-    jsonData1.CellVolt14 = hexValue36;
-    jsonData1.CellVolt15 = hexValue37;
-    jsonData1.CellVolt16 = hexValue38;
-    jsonData1.CellVolt17 = hexValue39;
-    jsonData1.CellVolt18 = hexValue40;
-    jsonData1.CellVolt19 = hexValue41;
-    jsonData1.CellVolt20 = hexValue42;
-    jsonData1.CellVolt21 = hexValue43;
-    jsonData1.CellVolt22 = hexValue44;
-    jsonData1.CellTemp01 = hexValue1;
-    jsonData1.CellTemp02 = hexValue2;
-    jsonData1.CellTemp03 = hexValue3;
-    jsonData1.CellTemp04 = hexValue4;
-    jsonData1.CellTemp05 = hexValue5;
-    jsonData1.CellTemp06 = hexValue6;
-    jsonData1.CellTemp07 = hexValue7;
-    jsonData1.CellTemp08 = hexValue8;
-    jsonData1.CellTemp09 = hexValue9;
-    jsonData1.CellTemp10 = hexValue10;
-    jsonData1.CellTemp11 = hexValue11;
-    jsonData1.CellTemp12 = hexValue12;
-    jsonData1.CellTemp13 = hexValue13;
-    jsonData1.CellTemp14 = hexValue14;
-    jsonData1.CellTemp15 = hexValue15;
-    jsonData1.CellTemp16 = hexValue16;
-    jsonData1.CellTemp17 = hexValue17;
-    jsonData1.CellTemp18 = hexValue18;
-    jsonData1.CellTemp19 = hexValue19;
-    jsonData1.CellTemp20 = hexValue20;
-    jsonData1.CellTemp21 = hexValue21;
-    jsonData1.CellTemp22 = hexValue22;
-    jsonData1.CellAvgVolt = hexValue51;
-    jsonData1.CellMinVolt = hexValue52;
-    jsonData1.CellMaxVolt = hexValue53;
-    jsonData1.CellDifVolt = hexValue54;
-    jsonData1.CellAvgTemp = hexValue55;
-    jsonData1.CellMinTemp = hexValue56;
-    jsonData1.CellMaxTemp = hexValue57;
-    jsonData1.CellDifTemp = hexValue58;
+    jsonData1.RackCellAvgVolt = hexValue59;
+    jsonData1.RackCellMinVolt = hexValue60;
+    jsonData1.RackCellMaxVolt = hexValue61;
+    jsonData1.RackCellDifVolt = hexValue62;
+    jsonData1.RackCellAvgTemp = hexValue63;
+    jsonData1.RackCellMinTemp = hexValue64;
+    jsonData1.RackCellMaxTemp = hexValue65;
+    jsonData1.RackCellDifTemp = hexValue66;
+    jsonData1.TrayCellAvgVolt1 = hexValue51;
+    jsonData1.TrayCellMinVolt1 = hexValue52;
+    jsonData1.TrayCellMaxVolt1 = hexValue53;
+    jsonData1.TrayCellDifVolt1 = hexValue54;
+    jsonData1.TrayCellAvgTemp1 = hexValue55;
+    jsonData1.TrayCellMinTemp1 = hexValue56;
+    jsonData1.TrayCellMaxTemp1 = hexValue57;
+    jsonData1.TrayCellDifTemp1 = hexValue58;
+    jsonData1.TrayCellVolt1 = `${hexValue23} ${hexValue24} ${hexValue25} ${hexValue26} ${hexValue27} ${hexValue28} ${hexValue29} ${hexValue30} ${hexValue31} ${hexValue32} ${hexValue33} ${hexValue34} ${hexValue35} ${hexValue36} ${hexValue37} ${hexValue38} ${hexValue39} ${hexValue40} ${hexValue41} ${hexValue42} ${hexValue43} ${hexValue44}`;
+
+    jsonData1.TrayCellTemp1 = `${hexValue1} ${hexValue2} ${hexValue3} ${hexValue4} ${hexValue5} ${hexValue6} ${hexValue7} ${hexValue8} ${hexValue9} ${hexValue10} ${hexValue11} ${hexValue12} ${hexValue13} ${hexValue14} ${hexValue15} ${hexValue16} ${hexValue17} ${hexValue18} ${hexValue19} ${hexValue20} ${hexValue21} ${hexValue22}`;
+    jsonData1.TrayCellAvgVolt2 = hexValue113;
+    jsonData1.TrayCellMinVolt2 = hexValue114;
+    jsonData1.TrayCellMaxVolt2 = hexValue115;
+    jsonData1.TrayCellDifVolt2 = hexValue116;
+    jsonData1.TrayCellAvgTemp2 = hexValue117;
+    jsonData1.TrayCellMinTemp2 = hexValue118;
+    jsonData1.TrayCellMaxTemp2 = hexValue119;
+    jsonData1.TrayCellDifTemp2 = hexValue120;
+    jsonData1.TrayCellVolt2 = `${hexValue67} ${hexValue68} ${hexValue69} ${hexValue70} ${hexValue71} ${hexValue72} ${hexValue73} ${hexValue74} ${hexValue75} ${hexValue76} ${hexValue77} ${hexValue78} ${hexValue79} ${hexValue80} ${hexValue81} ${hexValue82} ${hexValue83} ${hexValue84} ${hexValue85} ${hexValue86} ${hexValue87} ${hexValue88}`;
+
+    jsonData1.TrayCellTemp2 = `${hexValue91} ${hexValue92} ${hexValue93} ${hexValue94} ${hexValue95} ${hexValue96} ${hexValue97} ${hexValue98} ${hexValue99} ${hexValue100} ${hexValue101} ${hexValue102} ${hexValue103} ${hexValue104} ${hexValue105} ${hexValue106} ${hexValue107} ${hexValue108} ${hexValue109} ${hexValue110}`;
     let jsonString = JSON.stringify(jsonData1);
+
     console.log(jsonString);
+    // TrayCellVolt 문자열을 공백으로 분리하여 배열로 변환
+    // const trayCellVoltArray = jsonData1.TrayCellVolt.split(' ');
+    // // 첫 번째 값 추출
+    // const firstTrayCellVolt = trayCellVoltArray[2];
+    // // 첫 번째 TrayCellVolt 값 출력
+    // console.log(firstTrayCellVolt); // 출력: 3.690
     // const data1 = JSON.parse(jsonString);
     // console.log(data1.serial_code);
   } catch (error) {
