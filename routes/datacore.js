@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 const dotenv = require('dotenv');
 const router = express.Router();
 dotenv.config();
-
+//이거
 if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
   console.error('AWS 자격 증명이 환경 변수에서 찾을 수 없습니다.');
   process.exit(1);
@@ -277,7 +277,9 @@ const getData = async () => {
       hexValue190,
       hexValue191,
       hexValue192,
-      hexValue193;
+      hexValue193,
+      hexValue194,
+      hexValue195;
 
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
@@ -497,6 +499,12 @@ const getData = async () => {
             hexValue139 = '정상';
           }
           break;
+        case '83:':
+          if (words.length >= 2) {
+            let eightyone1 = words[6];
+            let eightyone2 = words[7];
+            hex = (parseInt(eightyone2 + eightyone1, 16) * 0.1).toFixed(1);
+          }
       }
     }
 
@@ -731,6 +739,103 @@ const getData = async () => {
           hexValue110 = (dataObj.hexValue3 * 100).toFixed(1);
           hexValue111 = (dataObj.hexValue4 * 100).toFixed(1);
           break;
+        case '130:':
+          process1(dataObj, words);
+          hexValue140 = dataObj.hexValue1;
+          hexValue141 = dataObj.hexValue2;
+          hexValue142 = dataObj.hexValue3;
+          hexValue143 = dataObj.hexValue4;
+        case '131:':
+          process1(dataObj, words);
+          hexValue144 = dataObj.hexValue1;
+          hexValue145 = dataObj.hexValue2;
+          hexValue146 = dataObj.hexValue3;
+          hexValue147 = dataObj.hexValue4;
+          break;
+        case '132:':
+          process1(dataObj, words);
+          hexValue148 = dataObj.hexValue1;
+          hexValue149 = dataObj.hexValue2;
+          hexValue150 = dataObj.hexValue3;
+          hexValue151 = dataObj.hexValue4;
+          break;
+        case '133:':
+          process1(dataObj, words);
+          hexValue152 = dataObj.hexValue1;
+          hexValue153 = dataObj.hexValue2;
+          hexValue154 = dataObj.hexValue3;
+          hexValue155 = dataObj.hexValue4;
+          break;
+        case '134:':
+          process1(dataObj, words);
+          hexValue156 = dataObj.hexValue1;
+          hexValue157 = dataObj.hexValue2;
+          hexValue158 = dataObj.hexValue3;
+          hexValue159 = dataObj.hexValue4;
+          break;
+        case '135:':
+          process1(dataObj, words);
+          hexValue160 = dataObj.hexValue1;
+          hexValue161 = dataObj.hexValue2;
+          hexValue162 = dataObj.hexValue3;
+          hexValue163 = dataObj.hexValue4;
+          break;
+        case '136:':
+          process1(dataObj, words);
+          hexValue164 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue165 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue166 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue167 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '137:':
+          process1(dataObj, words);
+          hexValue168 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue169 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue170 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue171 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '138:':
+          process1(dataObj, words);
+          hexValue172 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue173 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue174 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue175 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '139:':
+          process1(dataObj, words);
+          hexValue176 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue177 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue178 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue179 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '13a:':
+          process1(dataObj, words);
+          hexValue180 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue181 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue182 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue183 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '13b:':
+          process1(dataObj, words);
+          hexValue184 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue185 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue186 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue187 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '13c:':
+          process1(dataObj, words);
+          hexValue188 = dataObj.hexValue1;
+          hexValue189 = dataObj.hexValue2;
+          hexValue190 = dataObj.hexValue3;
+          hexValue191 = dataObj.hexValue4;
+          break;
+        case '13d:':
+          process1(dataObj, words);
+          hexValue192 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue193 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue194 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue195 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
 
         case '102:':
           process1(dataObj, words);
@@ -759,6 +864,7 @@ const getData = async () => {
     }
     let jsonData1 = {
       time: times,
+      Battery: hex,
       RackNumber: hexValue128,
       AllRackReady: hexValue133,
       FalutWarning: `${hexValue134} ${hexValue135} ${hexValue136} ${hexValue137} ${hexValue138} ${hexValue139}`,
@@ -782,6 +888,18 @@ const getData = async () => {
       TrayCellMinTemp2: `${hexValue109}`,
       TrayCellMaxTemp2: `${hexValue110}`,
       TrayCellDifTemp2: `${hexValue111}`,
+
+      TrayCellVolt3: `${hexValue140} ${hexValue141} ${hexValue142} ${hexValue143} ${hexValue144} ${hexValue145} ${hexValue146} ${hexValue147} ${hexValue148} ${hexValue149} ${hexValue150} ${hexValue151} ${hexValue152} ${hexValue153} ${hexValue154} ${hexValue155} ${hexValue156} ${hexValue157} ${hexValue158} ${hexValue159} ${hexValue160} ${hexValue161}`,
+      TrayCellTemp3: `${hexValue164} ${hexValue165} ${hexValue166} ${hexValue167} ${hexValue168} ${hexValue169} ${hexValue170} ${hexValue171} ${hexValue172} ${hexValue173} ${hexValue174} ${hexValue175} ${hexValue176} ${hexValue177} ${hexValue178} ${hexValue179} ${hexValue180} ${hexValue181} ${hexValue182} ${hexValue183} ${hexValue184} ${hexValue185}`,
+      TrayCellAvgVolt3: `${hexValue188}`,
+      TrayCellMinVolt3: `${hexValue189}`,
+      TrayCellMaxVolt3: `${hexValue190}`,
+      TrayCellDifVolt3: `${hexValue191}`,
+      TrayCellAvgTemp3: `${hexValue192}`,
+      TrayCellMinTemp3: `${hexValue193}`,
+      TrayCellMaxTemp3: `${hexValue194}`,
+      TrayCellDifTemp3: `${hexValue195}`,
+
       RackRealSOC: `${hexValue112}`,
       RackSOH: `${hexValue113}`,
       UserSOC: `${hexValue114}`,
@@ -803,16 +921,16 @@ const getData = async () => {
   }
 };
 
-// 1초마다 데이터 가져오기
-setInterval(async () => {
-  try {
-    const data = await getData();
-    if (data) {
-    }
-  } catch (error) {
-    console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
-  }
-}, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
+// // 1초마다 데이터 가져오기
+// setInterval(async () => {
+//   try {
+//     const data = await getData();
+//     if (data) {
+//     }
+//   } catch (error) {
+//     console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
+//   }
+// }, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
 
 // /getdata 엔드포인트 정의
 router.get('/getdata', async (req, res) => {

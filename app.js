@@ -9,10 +9,10 @@ const helmet = require('helmet');
 const cors = require('cors');
 const passport = require('passport');
 const app = express();
-const mqttRouter = require('./routes/mqtttest1 copy2 copy 3');
-
+const dataRouter = require('./routes/datacore');
+const graphRouter = require('./routes/graph');
 dotenv.config();
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(morgan('combined'));
@@ -55,8 +55,8 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/mqtttest1 copy2 copy 3', mqttRouter);
-
+app.use('/datacore', dataRouter);
+app.use('/graph', graphRouter);
 // 에러 처리 미들웨어
 app.use((err, req, res, next) => {
   console.error(err); // 콘솔에 에러를 출력
