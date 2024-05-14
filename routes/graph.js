@@ -31,12 +31,12 @@ router.get('/getdata', async (req, res) => {
       },
       ProjectionExpression: 'mydata, #ts', // #ts로 timestamp 대체
       ExpressionAttributeNames: {
-        '#ts': 'timestamp',
+        '#ts': 'data',
       },
     };
 
     const result = await dynamoDB.query(params).promise();
-
+    // console.log(result);
     if (result.Items.length === 0) {
       // 데이터가 없을 때의 처리
       console.log('DynamoDB에서 데이터를 찾을 수 없습니다.');
@@ -50,10 +50,10 @@ router.get('/getdata', async (req, res) => {
       // 추가 필드가 있다면 여기에 추가
     }));
 
-    // console.log(
-    //   'DynamoDB에서 최근 데이터:',
-    //   JSON.stringify(transformedData, null, 2)
-    // );
+    console.log(
+      'DynamoDB에서 최근 데이터:',
+      JSON.stringify(transformedData, null, 2)
+    );
     console.log(transformedData);
     res.json(transformedData);
   } catch (error) {
@@ -61,8 +61,6 @@ router.get('/getdata', async (req, res) => {
     res.status(500).json({ error: '내부 서버 오류' });
   }
 });
-
-
 
 router.get('/getdata1', async (req, res) => {
   try {
