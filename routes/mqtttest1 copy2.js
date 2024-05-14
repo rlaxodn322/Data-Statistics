@@ -31,7 +31,6 @@ const insertJsonToDynamoDB = async (jsonString) => {
     const item = {
       clientId: data.clientId, // 파티션 키
       time: data.time, // 정렬 키 (숫자형으로 변환된 timestamp)
-
       data: data, // 기존 데이터 포함
       RackNumber: data.RackNumber,
     };
@@ -207,7 +206,16 @@ const getData = async () => {
       hexValue118,
       hexValue119,
       hexValue120,
-      hexValue121;
+      hexValue121,
+      hexValue122,
+      hexValue123,
+      hexValue124,
+      hexValue125,
+      hexValue126,
+      hexValue127,
+      hexValue128,
+      hexValue129,
+      hexValue130;
 
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
@@ -249,46 +257,48 @@ const getData = async () => {
           }
           break;
         case '82:':
-          let one = words[0];
-          let one1 = words[1];
-          let one2 = words[2];
-          let one3 = words[3];
-          let one4 = words[4];
-          let one5 = words[5];
-          let one6 = words[6];
-          let one7 = words[7];
-          let oneone = parseInt(one, 10).toString(2).padStart(8, '0');
-          let one11 = parseInt(one, 10).toString(2).padStart(8, '0');
-          let one22 = parseInt(one, 10).toString(2).padStart(8, '0');
-          let one33 = parseInt(one, 10).toString(2).padStart(8, '0');
-          let one44 = parseInt(one, 10).toString(2).padStart(8, '0');
-          let one55 = parseInt(one, 10).toString(2).padStart(8, '0');
-          let one66 = parseInt(one, 10).toString(2).padStart(8, '0');
-          let one77 = parseInt(one, 10).toString(2).padStart(8, '0');
-
-          oneone.charAt(7) === '1'
-            ? (hexValue121 = 'BMS READY')
-            : (hexValue121 = 'BMS NOT READY');
-          oneone.charAt(6) === '1'
-            ? (hexValue121 = 'BMS READY')
-            : (hexValue121 = 'BMS NOT READY');
-          oneone.charAt(5) === '1'
-            ? (hexValue121 = 'BMS READY')
-            : (hexValue121 = 'BMS NOT READY');
-          oneone.charAt(4) === '1'
-            ? (hexValue121 = 'BMS READY')
-            : (hexValue121 = 'BMS NOT READY');
-          oneone.charAt(3) === '1'
-            ? (hexValue121 = 'BMS READY')
-            : (hexValue121 = 'BMS NOT READY');
-          oneone.charAt(2) === '1'
-            ? (hexValue121 = 'BMS READY')
-            : (hexValue121 = 'BMS NOT READY');
-          oneone.charAt(1) === '1'
-            ? (hexValue121 = 'BMS READY')
-            : (hexValue121 = 'BMS NOT READY');
+          let one1 = parseInt(words[0], 10).toString(2).padStart(8, '0');
+          let one2 = parseInt(words[1], 10).toString(2).padStart(8, '0');
+          let one3 = parseInt(words[2], 10).toString(2).padStart(8, '0');
+          let one4 = parseInt(words[3], 10).toString(2).padStart(8, '0');
+          let one5 = parseInt(words[4], 10).toString(2).padStart(8, '0');
+          let one6 = parseInt(words[5], 10).toString(2).padStart(8, '0');
+          let one7 = parseInt(words[6], 10).toString(2).padStart(8, '0');
+          let one8 = parseInt(words[7], 10).toString(2).padStart(8, '0');
+          if (one3.includes('1')) {
+            hexValue122 = 'Falut';
+          } else {
+            hexValue122 = '정상';
+          }
+          if (one4.includes('1')) {
+            hexValue123 = 'Warning';
+          } else {
+            hexValue123 = '정상';
+          }
+          if (one5.includes('1')) {
+            hexValue124 = 'Falut';
+          } else {
+            hexValue124 = '정상';
+          }
+          if (one6.includes('1')) {
+            hexValue125 = 'Waring';
+          } else {
+            hexValue125 = '정상';
+          }
+          if (one7.includes('1')) {
+            hexValue126 = 'Falut';
+          } else {
+            hexValue126 = '정상';
+          }
+          if (one8.includes('1')) {
+            hexValue127 = 'Waring';
+          } else {
+            hexValue127 = '정상';
+          }
+          break;
       }
     }
+
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
       const type = words[0].substring(0, 4); // 세그먼트 타입 추출
@@ -1031,6 +1041,7 @@ const getData = async () => {
     // jsonData1.serial_code = serial_code;
     jsonData1.time = times;
     jsonData1.RackNumber = hex;
+    jsonData1.FalutWarning = `${hexValue122} ${hexValue123} ${hexValue124} ${hexValue125} ${hexValue126} ${hexValue127}`;
     jsonData1.RackAvgVolt = hexValue;
     jsonData1.RackAvgCurr = hexValue45;
     jsonData1.RackSumCurr = hexValue46;
@@ -1055,7 +1066,6 @@ const getData = async () => {
     jsonData1.TrayCellMaxTemp1 = hexValue57;
     jsonData1.TrayCellDifTemp1 = hexValue58;
     jsonData1.TrayCellVolt1 = `${hexValue23} ${hexValue24} ${hexValue25} ${hexValue26} ${hexValue27} ${hexValue28} ${hexValue29} ${hexValue30} ${hexValue31} ${hexValue32} ${hexValue33} ${hexValue34} ${hexValue35} ${hexValue36} ${hexValue37} ${hexValue38} ${hexValue39} ${hexValue40} ${hexValue41} ${hexValue42} ${hexValue43} ${hexValue44}`;
-
     jsonData1.TrayCellTemp1 = `${hexValue1} ${hexValue2} ${hexValue3} ${hexValue4} ${hexValue5} ${hexValue6} ${hexValue7} ${hexValue8} ${hexValue9} ${hexValue10} ${hexValue11} ${hexValue12} ${hexValue13} ${hexValue14} ${hexValue15} ${hexValue16} ${hexValue17} ${hexValue18} ${hexValue19} ${hexValue20} ${hexValue21} ${hexValue22}`;
     jsonData1.TrayCellAvgVolt2 = hexValue113;
     jsonData1.TrayCellMinVolt2 = hexValue114;
@@ -1066,13 +1076,11 @@ const getData = async () => {
     jsonData1.TrayCellMaxTemp2 = hexValue119;
     jsonData1.TrayCellDifTemp2 = hexValue120;
     jsonData1.TrayCellVolt2 = `${hexValue67} ${hexValue68} ${hexValue69} ${hexValue70} ${hexValue71} ${hexValue72} ${hexValue73} ${hexValue74} ${hexValue75} ${hexValue76} ${hexValue77} ${hexValue78} ${hexValue79} ${hexValue80} ${hexValue81} ${hexValue82} ${hexValue83} ${hexValue84} ${hexValue85} ${hexValue86} ${hexValue87} ${hexValue88}`;
-
     jsonData1.TrayCellTemp2 = `${hexValue91} ${hexValue92} ${hexValue93} ${hexValue94} ${hexValue95} ${hexValue96} ${hexValue97} ${hexValue98} ${hexValue99} ${hexValue100} ${hexValue101} ${hexValue102} ${hexValue103} ${hexValue104} ${hexValue105} ${hexValue106} ${hexValue107} ${hexValue108} ${hexValue109} ${hexValue110}`;
 
     let jsonString = JSON.stringify(jsonData1);
     // await insertJsonToDynamoDB(jsonString);
-    // console.log(jsonString);
-    console.log(hexValue121);
+    console.log(jsonString);
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
     return null;
