@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 const dotenv = require('dotenv');
 const router = express.Router();
 dotenv.config();
-//이거
+
 if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
   console.error('AWS 자격 증명이 환경 변수에서 찾을 수 없습니다.');
   process.exit(1);
@@ -84,7 +84,8 @@ const getData = async () => {
     // console.log('가장 최근 데이터의 시간:', times);
     // console.log('can_data:', segments);
 
-    let hex,
+    let hexValues = [
+      hex,
       hexValue,
       hexValue1,
       hexValue2,
@@ -278,8 +279,8 @@ const getData = async () => {
       hexValue190,
       hexValue191,
       hexValue192,
-      hexValue193;
-
+      hexValue193,
+    ];
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
       const type = words[0].substring(0, 3); // 세그먼트 타입 추출
@@ -498,29 +499,6 @@ const getData = async () => {
           break;
       }
     }
-    const process1 = (hexValue1, hexValue2, hexValue3, hexValue4, words) => {
-      if (words && words.length >= 8) {
-        let one101 = words[0].substring(4);
-        let one102 = words[1];
-        hexValue1 = (parseInt(one102 + one101, 16) * 0.001).toFixed(3);
-        for (let i = 0; i < 3; i++) {
-          const index1 = 2 + i * 2;
-          const index2 = 3 + i * 2;
-          const one16 = words[index1];
-          const hexValue = (
-            parseInt(words[index2] + one16, 16) * 0.001
-          ).toFixed(3);
-          if (i === 0) {
-            hexValue2 = hexValue;
-          } else if (i === 1) {
-            hexValue3 = hexValue;
-          } else if (i === 2) {
-            hexValue4 = hexValue;
-          }
-        }
-        console.log(hexValue1, hexValue2, hexValue3, hexValue4);
-      }
-    };
 
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
@@ -551,10 +529,11 @@ const getData = async () => {
           break;
 
         case '110:':
-          if (words && words.length >= 8) {
+          if (words.length >= 8) {
             let one101 = words[0].substring(4);
             let one102 = words[1];
             hexValue23 = (parseInt(one102 + one101, 16) * 0.001).toFixed(3);
+
             for (let i = 0; i < 3; i++) {
               const index1 = 2 + i * 2;
               const index2 = 3 + i * 2;
@@ -562,6 +541,7 @@ const getData = async () => {
               const hexValue = (
                 parseInt(words[index2] + one16, 16) * 0.001
               ).toFixed(3);
+
               if (i === 0) {
                 hexValue24 = hexValue;
               } else if (i === 1) {
@@ -1625,7 +1605,7 @@ const getData = async () => {
     };
 
     let jsonString = JSON.stringify(jsonData1, null, 2);
-    // await insertJsonToDynamoDB(jsonString);
+    await insertJsonToDynamoDB(jsonString);
     console.log(jsonString);
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
