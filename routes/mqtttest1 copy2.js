@@ -265,34 +265,171 @@ const getData = async () => {
           let one6 = parseInt(words[5], 10).toString(2).padStart(8, '0');
           let one7 = parseInt(words[6], 10).toString(2).padStart(8, '0');
           let one8 = parseInt(words[7], 10).toString(2).padStart(8, '0');
-          if (one3.includes('1')) {
-            hexValue122 = 'Falut';
-          } else {
+
+          hexValue121 = '';
+          hexValue122 = '';
+          hexValue123 = '';
+          hexValue124 = '';
+          hexValue125 = '';
+          hexValue126 = '';
+          hexValue127 = '';
+          // if (one1.charAt(7) === '1') {
+          //   hexValue121 += 'STAT_BMS_READY ';
+          // }
+          // if (one1.charAt(6) === '1') {
+          //   hexValue121 += 'STAT_CHG_MODE ';
+          // }
+          // if (one1.charAt(5) === '1') {
+          //   hexValue121 += 'STAT_DCH_MODE ';
+          // }
+          // if (one1.charAt(3) === '1') {
+          //   hexValue121 += 'STAT_RELAY_DCH ';
+          // }
+          // if (one1.charAt(2) === '1') {
+          //   hexValue121 += 'STAT_RELAY_PRE ';
+          // }
+          // if (one1.charAt(1) === '1') {
+          //   hexValue121 += 'STAT_RELAY_CHG ';
+          // }
+          // if (hexValue121 === '') {
+          //   hexValue121 = '?';
+          // }
+
+          if (one3.charAt(7) === '1') {
+            hexValue122 += 'Pack Over Voltage Protection Fault ';
+          }
+          if (one3.charAt(6) === '1') {
+            hexValue122 += 'Pack Under Voltage Protection Fault ';
+          }
+          if (one3.charAt(5) === '1') {
+            hexValue122 += 'Charge Over Current Fault ';
+          }
+          if (one3.charAt(4) === '1') {
+            hexValue122 += 'Discharge Over Current Fault ';
+          }
+          if (one3.charAt(3) === '1') {
+            hexValue122 += 'Over SOC Fault ';
+          }
+          if (one3.charAt(2) === '1') {
+            hexValue122 += 'Under SOC Fault ';
+          }
+          if (one3.charAt(1) === '1') {
+            hexValue122 += 'Under SOH Fault ';
+          }
+          // 메시지가 하나도 추가되지 않은 경우에는 정상 상태로 설정
+          if (hexValue122 === '') {
             hexValue122 = '정상';
           }
-          if (one4.includes('1')) {
-            hexValue123 = 'Warning';
-          } else {
+
+          if (one4.charAt(7) === '1') {
+            hexValue123 += 'Pack Over Voltage Protection Warning ';
+          }
+          if (one4.charAt(6) === '1') {
+            hexValue123 += 'Pack Under Voltage Protection Warning ';
+          }
+          if (one4.charAt(5) === '1') {
+            hexValue123 += 'Charge Over Current Warning ';
+          }
+          if (one4.charAt(4) === '1') {
+            hexValue123 += 'Discharge Over Current Warning ';
+          }
+          if (one4.charAt(3) === '1') {
+            hexValue123 += 'Over SOC Warning ';
+          }
+          if (one4.charAt(2) === '1') {
+            hexValue123 += 'Under SOC Warning ';
+          }
+          if (one4.charAt(1) === '1') {
+            hexValue123 += 'Under SOH Warning ';
+          }
+          // 메시지가 하나도 추가되지 않은 경우에는 정상 상태로 설정
+          if (hexValue123 === '') {
             hexValue123 = '정상';
           }
-          if (one5.includes('1')) {
-            hexValue124 = 'Falut';
-          } else {
+
+          if (one5.charAt(7) === '1') {
+            hexValue124 += 'Cell Over Voltage Protection Fault ';
+          }
+          if (one5.charAt(6) === '1') {
+            hexValue124 += 'Cell Under Voltage Protection Fault ';
+          }
+          if (one5.charAt(5) === '1') {
+            hexValue124 += 'Cell Difference Voltage Protection Fault ';
+          }
+          if (one5.charAt(4) === '1') {
+            hexValue124 += 'Cell Over Temperature Protection Fault ';
+          }
+          if (one5.charAt(3) === '1') {
+            hexValue124 += 'Cell Under Temperature Protection Fault ';
+          }
+          if (one5.charAt(2) === '1') {
+            hexValue124 += 'Cell Difference Temperature Protection Fault ';
+          }
+          // 메시지가 하나도 추가되지 않은 경우에는 정상 상태로 설정
+          if (hexValue124 === '') {
             hexValue124 = '정상';
           }
-          if (one6.includes('1')) {
-            hexValue125 = 'Waring';
-          } else {
+
+          if (one6.charAt(7) === '1') {
+            hexValue125 += 'Cell Over Voltage Protection Warning ';
+          }
+          if (one6.charAt(6) === '1') {
+            hexValue125 += 'Cell Under Voltage Protection Warning ';
+          }
+          if (one6.charAt(5) === '1') {
+            hexValue125 += 'Cell Difference Voltage Protection Warning ';
+          }
+          if (one6.charAt(4) === '1') {
+            hexValue125 += 'Cell Over Temperature Protection Warning ';
+          }
+          if (one6.charAt(3) === '1') {
+            hexValue125 += 'Cell Under Temperature Protection Warning ';
+          }
+          if (one6.charAt(2) === '1') {
+            hexValue125 += 'Cell Difference Temperature Protection Warning ';
+          }
+          // 메시지가 하나도 추가되지 않은 경우에는 정상 상태로 설정
+          if (hexValue125 === '') {
             hexValue125 = '정상';
           }
-          if (one7.includes('1')) {
-            hexValue126 = 'Falut';
-          } else {
+
+          if (one7.charAt(7) === '1') {
+            hexValue126 += 'Regen Over Current Fault ';
+          }
+          if (one7.charAt(6) === '1') {
+            hexValue126 += 'Discharge Over Temperature Fault ';
+          }
+          if (one7.charAt(5) === '1') {
+            hexValue126 += 'Discharge Under Temperature Fault ';
+          }
+          if (one7.charAt(4) === '1') {
+            hexValue126 += 'Charge Over Power Fault ';
+          }
+          if (one7.charAt(3) === '1') {
+            hexValue126 += ' Discharge Over Power Fault ';
+          }
+          // 메시지가 하나도 추가되지 않은 경우에는 정상 상태로 설정
+          if (hexValue126 === '') {
             hexValue126 = '정상';
           }
-          if (one8.includes('1')) {
-            hexValue127 = 'Waring';
-          } else {
+
+          if (one8.charAt(7) === '1') {
+            hexValue127 += 'Regen Over Current Warning ';
+          }
+          if (one8.charAt(6) === '1') {
+            hexValue127 += 'Discharge Over Temperature Warning ';
+          }
+          if (one8.charAt(5) === '1') {
+            hexValue127 += 'Discharge Under Temperature Warning ';
+          }
+          if (one8.charAt(4) === '1') {
+            hexValue127 += 'Charge Over Power Warning ';
+          }
+          if (one8.charAt(3) === '1') {
+            hexValue127 += ' Discharge Over Power Warning ';
+          }
+          // 메시지가 하나도 추가되지 않은 경우에는 정상 상태로 설정
+          if (hexValue127 === '') {
             hexValue127 = '정상';
           }
           break;
@@ -1041,6 +1178,7 @@ const getData = async () => {
     // jsonData1.serial_code = serial_code;
     jsonData1.time = times;
     jsonData1.RackNumber = hex;
+    jsonData1.AllRackReady = hexValue121;
     jsonData1.FalutWarning = `${hexValue122} ${hexValue123} ${hexValue124} ${hexValue125} ${hexValue126} ${hexValue127}`;
     jsonData1.RackAvgVolt = hexValue;
     jsonData1.RackAvgCurr = hexValue45;
