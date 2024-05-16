@@ -913,7 +913,7 @@ const getData = async () => {
       RackCellDifTemp: `${hexValue123}`,
     };
     let jsonString = JSON.stringify(jsonData1, null, 2);
-    // await insertJsonToDynamoDB(jsonString);
+    await insertJsonToDynamoDB(jsonString);
     console.log(jsonString);
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
@@ -921,7 +921,7 @@ const getData = async () => {
   }
 };
 
-// // 1초마다 데이터 가져오기
+// 1초마다 데이터 가져오기
 // setInterval(async () => {
 //   try {
 //     const data = await getData();
@@ -932,7 +932,7 @@ const getData = async () => {
 //   }
 // }, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
 
-// /getdata 엔드포인트 정의
+//getdata 엔드포인트 정의
 router.get('/getdata', async (req, res) => {
   try {
     const data = await getData();

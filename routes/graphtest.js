@@ -4,58 +4,52 @@ const dotenv = require('dotenv');
 const router = express.Router();
 dotenv.config();
 
-if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
-  console.error('AWS 자격 증명이 환경 변수에서 찾을 수 없습니다.');
-  process.exit(1);
-}
-
+// AWS 설정 및 DynamoDB DocumentClient 생성
 AWS.config.update({
   region: 'ap-northeast-2',
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
-
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 const tableName = 'batterycan001';
 
 router.get('/getdata', async (req, res) => {
   try {
-    // DynamoDB에서 최근 데이터 읽기
+    const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
+    const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
+
+    // DynamoDB에서 해당 시간 범위의 데이터 읽기
     const params = {
       TableName: tableName,
-
-      KeyConditionExpression: 'clientId = :cid', // 파티션 키 조건
+      KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
       ExpressionAttributeValues: {
         ':cid': 'car001', // 실제 clientId 값으로 바꿔야 함
+        ':start': startTime,
+        ':end': endTime,
       },
-      ProjectionExpression: 'mydata, #ts', // #ts로 timestamp 대체
+      ProjectionExpression: 'mydata, #ts, #otherData', // #ts로 timestamp 대체
       ExpressionAttributeNames: {
-        '#ts': 'data',
+        '#ts': 'time',
+        '#otherData': 'data',
       },
       ScanIndexForward: false, // 최신 데이터 먼저 정렬
-      Limit: 1, // 결과를 최대 5개로 제한
+      Limit:15, // 결과를 최대 1개로 제한
     };
 
     const result = await dynamoDB.query(params).promise();
-    // console.log(result);
-    if (result.Items.length === 0) {
-      // 데이터가 없을 때의 처리
-      console.log('DynamoDB에서 데이터를 찾을 수 없습니다.');
 
-      res.json([]);
+    if (result.Items.length === 0) {
+      console.log('DynamoDB에서 해당 시간 범위의 데이터를 찾을 수 없습니다.');
+      res.json([]); // 데이터가 없으면 빈 배열 반환
       return;
     }
-
+    //console.log(result);
     const transformedData = result.Items.map((item) => ({
-      data: item,
+      ...item,
       // 추가 필드가 있다면 여기에 추가
     }));
-    const data1 = JSON.stringify(transformedData, null, 2);
-    console.log(data1);
-    //console.log(transformedData);
-    // const trayCellAvgVolt3 = data1[0]?.data?.data?.TrayCellVolt1;
-    // console.log(trayCellAvgVolt3); // "3.982"
-    res.json(transformedData);
+    console.log(transformedData);
+    res.json(transformedData); // 요청에 따른 데이터 반환
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
     res.status(500).json({ error: '내부 서버 오류' });
