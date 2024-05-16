@@ -34,7 +34,7 @@ router.get('/getdata', async (req, res) => {
         '#otherData1': 'RackNumber',
       },
       ScanIndexForward: false, // 최신 데이터 먼저 정렬
-      Limit: 500, // 결과를 최대 1개로 제한
+      Limit: 20, // 결과를 최대 1개로 제한
     };
 
     const result = await dynamoDB.query(params).promise();
