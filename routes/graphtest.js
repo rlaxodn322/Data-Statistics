@@ -27,13 +27,14 @@ router.get('/getdata', async (req, res) => {
         ':start': startTime,
         ':end': endTime,
       },
-      ProjectionExpression: 'mydata, #ts, #otherData', // #ts로 timestamp 대체
+      ProjectionExpression: 'mydata, #ts, #otherData, #otherData1', // #ts로 timestamp 대체
       ExpressionAttributeNames: {
         '#ts': 'time',
         '#otherData': 'data',
+        '#otherData1': 'RackNumber',
       },
       ScanIndexForward: false, // 최신 데이터 먼저 정렬
-      Limit:15, // 결과를 최대 1개로 제한
+      Limit: 500, // 결과를 최대 1개로 제한
     };
 
     const result = await dynamoDB.query(params).promise();
