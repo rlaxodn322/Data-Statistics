@@ -279,7 +279,63 @@ const getData = async () => {
       hexValue192,
       hexValue193,
       hexValue194,
-      hexValue195;
+      hexValue195,
+      hexValue196,
+      hexValue197,
+      hexValue198,
+      hexValue199,
+      hexValue200,
+      hexValue201,
+      hexValue202,
+      hexValue203,
+      hexValue204,
+      hexValue205,
+      hexValue206,
+      hexValue207,
+      hexValue208,
+      hexValue209,
+      hexValue210,
+      hexValue211,
+      hexValue212,
+      hexValue213,
+      hexValue214,
+      hexValue215,
+      hexValue216,
+      hexValue217,
+      hexValue218,
+      hexValue219,
+      hexValue220,
+      hexValue221,
+      hexValue222,
+      hexValue223,
+      hexValue224,
+      hexValue225,
+      hexValue226,
+      hexValue227,
+      hexValue228,
+      hexValue229,
+      hexValue230,
+      hexValue231,
+      hexValue232,
+      hexValue233,
+      hexValue234,
+      hexValue235,
+      hexValue236,
+      hexValue237,
+      hexValue238,
+      hexValue239,
+      hexValue240,
+      hexValue241,
+      hexValue242,
+      hexValue243,
+      hexValue244,
+      hexValue245,
+      hexValue246,
+      hexValue247,
+      hexValue248,
+      hexValue249,
+      hexValue250,
+      hexValue251;
 
     for (const segment of segments) {
       const words = segment.split(' ').map((word) => word.trim());
@@ -836,6 +892,90 @@ const getData = async () => {
           hexValue194 = (dataObj.hexValue3 * 100).toFixed(1);
           hexValue195 = (dataObj.hexValue4 * 100).toFixed(1);
           break;
+        case '14c:':
+          process1(dataObj, words);
+          hexValue196 = dataObj.hexValue1;
+          hexValue197 = dataObj.hexValue2;
+          hexValue198 = dataObj.hexValue3;
+          hexValue199 = dataObj.hexValue4;
+          break;
+        case '14d:':
+          process1(dataObj, words);
+          hexValue200 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue201 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue202 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue203 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '15c:':
+          process1(dataObj, words);
+          hexValue204 = dataObj.hexValue1;
+          hexValue205 = dataObj.hexValue2;
+          hexValue206 = dataObj.hexValue3;
+          hexValue207 = dataObj.hexValue4;
+          break;
+        case '15d:':
+          process1(dataObj, words);
+          hexValue208 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue209 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue210 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue211 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '16c:':
+          process1(dataObj, words);
+          hexValue212 = dataObj.hexValue1;
+          hexValue213 = dataObj.hexValue2;
+          hexValue214 = dataObj.hexValue3;
+          hexValue215 = dataObj.hexValue4;
+          break;
+        case '16d:':
+          process1(dataObj, words);
+          hexValue216 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue217 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue218 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue219 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '17c:':
+          process1(dataObj, words);
+          hexValue220 = dataObj.hexValue1;
+          hexValue221 = dataObj.hexValue2;
+          hexValue222 = dataObj.hexValue3;
+          hexValue223 = dataObj.hexValue4;
+          break;
+        case '17d:':
+          process1(dataObj, words);
+          hexValue224 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue225 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue226 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue227 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '18c:':
+          process1(dataObj, words);
+          hexValue228 = dataObj.hexValue1;
+          hexValue229 = dataObj.hexValue2;
+          hexValue230 = dataObj.hexValue3;
+          hexValue231 = dataObj.hexValue4;
+          break;
+        case '18d:':
+          process1(dataObj, words);
+          hexValue232 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue233 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue234 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue235 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '19c:':
+          process1(dataObj, words);
+          hexValue236 = dataObj.hexValue1;
+          hexValue237 = dataObj.hexValue2;
+          hexValue238 = dataObj.hexValue3;
+          hexValue239 = dataObj.hexValue4;
+          break;
+        case '19d:':
+          process1(dataObj, words);
+          hexValue240 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue241 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue242 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue243 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
 
         case '102:':
           process1(dataObj, words);
@@ -899,6 +1039,54 @@ const getData = async () => {
       TrayCellMinTemp3: `${hexValue193}`,
       TrayCellMaxTemp3: `${hexValue194}`,
       TrayCellDifTemp3: `${hexValue195}`,
+      TrayCellAvgVolt4: `${hexValue196}`,
+      TrayCellMinVolt4: `${hexValue197}`,
+      TrayCellMaxVolt4: `${hexValue198}`,
+      TrayCellDifVolt4: `${hexValue199}`,
+      TrayCellAvgTemp4: `${hexValue200}`,
+      TrayCellMinTemp4: `${hexValue201}`,
+      TrayCellMaxTemp4: `${hexValue202}`,
+      TrayCellDifTemp4: `${hexValue203}`,
+      TrayCellAvgVolt5: `${hexValue204}`,
+      TrayCellMinVolt5: `${hexValue205}`,
+      TrayCellMaxVolt5: `${hexValue206}`,
+      TrayCellDifVolt5: `${hexValue207}`,
+      TrayCellAvgTemp5: `${hexValue208}`,
+      TrayCellMinTemp5: `${hexValue209}`,
+      TrayCellMaxTemp5: `${hexValue210}`,
+      TrayCellDifTemp5: `${hexValue211}`,
+      TrayCellAvgVolt6: `${hexValue212}`,
+      TrayCellMinVolt6: `${hexValue213}`,
+      TrayCellMaxVolt6: `${hexValue214}`,
+      TrayCellDifVolt6: `${hexValue215}`,
+      TrayCellAvgTemp6: `${hexValue216}`,
+      TrayCellMinTemp6: `${hexValue217}`,
+      TrayCellMaxTemp6: `${hexValue218}`,
+      TrayCellDifTemp6: `${hexValue219}`,
+      TrayCellAvgVolt7: `${hexValue220}`,
+      TrayCellMinVolt7: `${hexValue221}`,
+      TrayCellMaxVolt7: `${hexValue222}`,
+      TrayCellDifVolt7: `${hexValue223}`,
+      TrayCellAvgTemp7: `${hexValue224}`,
+      TrayCellMinTemp7: `${hexValue225}`,
+      TrayCellMaxTemp7: `${hexValue226}`,
+      TrayCellDifTemp7: `${hexValue227}`,
+      TrayCellAvgVolt8: `${hexValue228}`,
+      TrayCellMinVolt8: `${hexValue229}`,
+      TrayCellMaxVolt8: `${hexValue230}`,
+      TrayCellDifVolt8: `${hexValue231}`,
+      TrayCellAvgTemp8: `${hexValue232}`,
+      TrayCellMinTemp8: `${hexValue233}`,
+      TrayCellMaxTemp8: `${hexValue234}`,
+      TrayCellDifTemp8: `${hexValue235}`,
+      TrayCellAvgVolt9: `${hexValue236}`,
+      TrayCellMinVolt9: `${hexValue237}`,
+      TrayCellMaxVolt9: `${hexValue238}`,
+      TrayCellDifVolt9: `${hexValue239}`,
+      TrayCellAvgTemp9: `${hexValue240}`,
+      TrayCellMinTemp9: `${hexValue241}`,
+      TrayCellMaxTemp9: `${hexValue242}`,
+      TrayCellDifTemp9: `${hexValue243}`,
 
       RackRealSOC: `${hexValue112}`,
       RackSOH: `${hexValue113}`,
