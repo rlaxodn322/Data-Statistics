@@ -1109,7 +1109,7 @@ const getData = async () => {
   }
 };
 
-// 1초마다 데이터 가져오기
+//1초마다 데이터 가져오기
 // setInterval(async () => {
 //   try {
 //     const data = await getData();
@@ -1118,7 +1118,7 @@ const getData = async () => {
 //   } catch (error) {
 //     console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
 //   }
-// }, 3000); // 1000밀리초 (1초)마다 getData 함수 호출
+// }, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
 
 //getdata 엔드포인트 정의
 router.get('/getdata', async (req, res) => {
