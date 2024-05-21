@@ -1,4 +1,4 @@
-// (can data RackNumber filter 전)
+// (can data RackNumber filter 후)
 const express = require('express');
 const AWS = require('aws-sdk');
 const dotenv = require('dotenv');
@@ -13,32 +13,31 @@ AWS.config.update({
 });
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 const tableName = process.env.DynamoTable;
-
 router.get('/getdata', async (req, res) => {
   try {
     const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
     const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
-    const rackNumber = req.query.rackNumber;
+    const rackNumber = req.query.rackNumber; // 'rackNumber'로 변경
+
     // DynamoDB에서 해당 시간 범위의 데이터 읽기
     const params = {
       TableName: tableName,
       KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
       ExpressionAttributeValues: {
-        ':cid': 'car001', // 실제 clientId 값으로 바꿔야 함
+        ':cid': 'car001',
         ':start': startTime,
         ':end': endTime,
         ':rackNumber': rackNumber,
       },
-      ProjectionExpression: 'mydata, #ts, #otherData, #otherData1', // #ts로 timestamp 대체
+      FilterExpression: 'RackNumber = :rackNumber',
       ExpressionAttributeNames: {
         '#ts': 'time',
-        '#otherData': 'data',
-        '#otherData1': 'RackNumber',
+        // '#otherData': 'data',  // 사용되지 않는 속성 제거
+        // '#otherData1': 'RackNumber',  // 사용되지 않는 속성 제거
       },
-      ScanIndexForward: false, // 최신 데이터 먼저 정렬
-      Limit: 10, // 결과를 최대 1개로 제한
+      ScanIndexForward: false,
+      Limit: 100,
     };
-
     const result = await dynamoDB.query(params).promise();
 
     if (result.Items.length === 0) {

@@ -976,7 +976,6 @@ const getData = async () => {
           hexValue242 = (dataObj.hexValue3 * 100).toFixed(1);
           hexValue243 = (dataObj.hexValue4 * 100).toFixed(1);
           break;
-
         case '102:':
           process1(dataObj, words);
           hexValue112 = (dataObj.hexValue1 * 100).toFixed(1);

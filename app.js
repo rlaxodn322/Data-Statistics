@@ -11,6 +11,7 @@ const passport = require('passport');
 const app = express();
 const dataRouter = require('./routes/datacore');
 const graphRouter = require('./routes/graphtest');
+const graphRouter2 = require('./routes/graphtest2');
 dotenv.config();
 app.set('port', process.env.PORT || 3001);
 
@@ -57,6 +58,7 @@ app.use(passport.session());
 
 app.use('/datacore', dataRouter);
 app.use('/graphtest', graphRouter);
+app.use('/graphtest2', graphRouter2);
 // 에러 처리 미들웨어
 app.use((err, req, res, next) => {
   console.error(err); // 콘솔에 에러를 출력
