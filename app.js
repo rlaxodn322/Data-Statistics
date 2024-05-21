@@ -58,7 +58,7 @@ app.use(passport.session());
 
 app.use('/datacore', dataRouter);
 app.use('/graphtest', graphRouter);
-app.use('/graphtest2', graphRouter2);
+//app.use('/graphtest2', graphRouter2);
 // 에러 처리 미들웨어
 app.use((err, req, res, next) => {
   console.error(err); // 콘솔에 에러를 출력

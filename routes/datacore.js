@@ -20,8 +20,8 @@ const dynamoDBNew = new AWS.DynamoDB.DocumentClient({
   region: 'ap-northeast-2',
 });
 
-const tableName = 'battery001';
-const newTableName = 'batterycan001';
+const tableName = process.env.DynamoTable;
+const newTableName = process.env.NewDynamoTable;
 const insertJsonToDynamoDB = async (jsonString) => {
   try {
     const data = JSON.parse(jsonString); // JSON 문자열 파싱
@@ -1108,7 +1108,7 @@ const getData = async () => {
   }
 };
 
-//1초마다 데이터 가져오기
+// //1초마다 데이터 가져오기
 // setInterval(async () => {
 //   try {
 //     const data = await getData();
