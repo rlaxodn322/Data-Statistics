@@ -36,12 +36,14 @@ router.get('/getdata', async (req, res) => {
         // '#otherData1': 'RackNumber',  // 사용되지 않는 속성 제거
       },
       ScanIndexForward: false,
-      Limit: 100,
+      Limit: 400,
     };
     const result = await dynamoDB.query(params).promise();
 
     if (result.Items.length === 0) {
-      console.log('DynamoDB에서 해당 시간 범위의 데이터를 찾을 수 없습니다.');
+      console.log(
+        'DynamoDB에서 해당 시간 범위의 데이터, RackNumber를 찾을 수 없습니다.'
+      );
       res.json([]); // 데이터가 없으면 빈 배열 반환
       return;
     }
