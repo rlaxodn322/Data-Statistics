@@ -11,7 +11,7 @@ const passport = require('passport');
 const app = express();
 const dataRouter = require('./routes/datacore');
 const graphRouter = require('./routes/graphtest');
-const graphRouter2 = require('./routes/graphtest2');
+// const graphRouter2 = require('./routes/graphtest2');
 dotenv.config();
 app.set('port', process.env.PORT || 3001);
 
@@ -26,6 +26,7 @@ if (process.env.NODE_ENV === 'production') {
 const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
+  
   secret: process.env.COOKIE_SECRET,
   cookie: {
     httpOnly: true,

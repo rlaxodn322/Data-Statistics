@@ -37,7 +37,7 @@ router.get('/getdata', async (req, res) => {
         // '#otherData1': 'RackNumber',  // 사용되지 않는 속성 제거
       },
       ScanIndexForward: false,
-      Limit: 500,
+      Limit: 300,
     };
     const result = await dynamoDB.query(params).promise();
 
