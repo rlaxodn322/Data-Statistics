@@ -37,7 +37,7 @@ router.get('/getdata', async (req, res) => {
         // '#otherData1': 'RackNumber',  // 사용되지 않는 속성 제거
       },
       ScanIndexForward: false,
-      Limit: 300,
+      Limit: 100,
     };
     const result = await dynamoDB.query(params).promise();
 
@@ -61,12 +61,11 @@ router.get('/getdata', async (req, res) => {
   }
 });
 
-
 router.get('/getdata1', async (req, res) => {
   try {
     const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
     const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
-   
+
     // DynamoDB에서 해당 시간 범위의 데이터 읽기
     const params = {
       TableName: tableName,
@@ -104,8 +103,5 @@ router.get('/getdata1', async (req, res) => {
     res.status(500).json({ error: '내부 서버 오류' });
   }
 });
-
-
-
 
 module.exports = router;

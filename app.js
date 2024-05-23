@@ -10,6 +10,8 @@ const cors = require('cors');
 const passport = require('passport');
 const app = express();
 const dataRouter = require('./routes/datacore');
+const dataRouter2 = require('./routes/datacore2');
+const dataRouter3 = require('./routes/datacore3');
 const graphRouter = require('./routes/graphtest');
 // const graphRouter2 = require('./routes/graphtest2');
 dotenv.config();
@@ -26,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
-  
+
   secret: process.env.COOKIE_SECRET,
   cookie: {
     httpOnly: true,
@@ -58,6 +60,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/datacore', dataRouter);
+app.use('/datacore2', dataRouter2);
+app.use('/datacore3', dataRouter3);
 app.use('/graphtest', graphRouter);
 //app.use('/graphtest2', graphRouter2);
 // 에러 처리 미들웨어
