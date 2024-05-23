@@ -26,6 +26,19 @@ const newTableName = process.env.NewDynamoTable;
 const insertJsonToDynamoDB = async (jsonString) => {
   try {
     const data = JSON.parse(jsonString); // JSON 문자열 파싱
+    if (
+      data.RackNumber === '06' ||
+      data.RackNumber === '07' ||
+      data.RackNumber === '08' ||
+      data.RackNumber === '09' ||
+      data.TrayCellAvgVolt6 === 'undefined' ||
+      data.TrayCellMaxVolt6 === '0.000'
+    ) {
+      console.log(
+        'RackNumber가 06, 07, 08, 09인 경우 DynamoDB에 삽입하지 않습니다.'
+      );
+      return; // RackNumber가 해당 값들인 경우 삽입하지 않고 함수 종료
+    }
     // clientId 필드를 추가
     data.clientId = 'car003'; // 예시: 실제 clientId 값으로 대체
     // DynamoDB에 삽입할 아이템 생성
@@ -1110,15 +1123,15 @@ const getData = async () => {
 };
 
 // //1초마다 데이터 가져오기
-// setInterval(async () => {
-//   try {
-//     const data = await getData();
-//     if (data) {
-//     }
-//   } catch (error) {
-//     console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
-//   }
-// }, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
+setInterval(async () => {
+  try {
+    const data = await getData();
+    if (data) {
+    }
+  } catch (error) {
+    console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
+  }
+}, 4000); // 1000밀리초 (1초)마다 getData 함수 호출
 
 //getdata 엔드포인트 정의
 router.get('/getdata', async (req, res) => {

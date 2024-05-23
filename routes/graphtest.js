@@ -13,8 +13,6 @@ AWS.config.update({
 });
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 const tableName = process.env.NewDynamoTable;
-const tableName2 = process.env.NewDynamoTable;
-const tableName3 = process.env.NewDynamoTable;
 
 router.get('/getdata', async (req, res) => {
   try {
@@ -22,18 +20,10 @@ router.get('/getdata', async (req, res) => {
     const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
     const rackNumber = req.query.rackNumber; // 'rackNumber'로 변경
     const title = req.query.title;
-    let currentTable;
 
-    if (title === 'car001') {
-      currentTable = tableName;
-    } else if (title === 'car002') {
-      currentTable = tableName2;
-    } else if (title === 'car003') {
-      currentTable = tableName3;
-    }
     // DynamoDB에서 해당 시간 범위의 데이터 읽기
     const params = {
-      TableName: currentTable,
+      TableName: tableName,
       KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
       ExpressionAttributeValues: {
         ':cid': title,
@@ -48,7 +38,7 @@ router.get('/getdata', async (req, res) => {
         // '#otherData1': 'RackNumber',  // 사용되지 않는 속성 제거
       },
       ScanIndexForward: false,
-      Limit: 100,
+      //Limit: 500,
     };
     const result = await dynamoDB.query(params).promise();
 
@@ -77,18 +67,9 @@ router.get('/getdata1', async (req, res) => {
     const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
     const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
     const title = req.query.title;
-    let currentTable;
-
-    if (title === 'car001') {
-      currentTable = tableName;
-    } else if (title === 'car002') {
-      currentTable = tableName2;
-    } else if (title === 'car003') {
-      currentTable = tableName3;
-    }
-    // DynamoDB에서 해당 시간 범위의 데이터 읽기
+  
     const params = {
-      TableName: currentTable,
+      TableName: tableName,
       KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
       ExpressionAttributeValues: {
         ':cid': title, // 실제 clientId 값으로 바꿔야 함
@@ -101,7 +82,7 @@ router.get('/getdata1', async (req, res) => {
         // '#otherData': 'data',
       },
       ScanIndexForward: false, // 최신 데이터 먼저 정렬
-      Limit: 50, // 결과를 최대 1개로 제한
+      //Limit: 500, // 결과를 최대 1개로 제한
     };
 
     const result = await dynamoDB.query(params).promise();
