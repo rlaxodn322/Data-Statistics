@@ -1109,7 +1109,7 @@ const getData = async () => {
   }
 };
 
-// //1초마다 데이터 가져오기
+//1초마다 데이터 가져오기
 // setInterval(async () => {
 //   try {
 //     const data = await getData();

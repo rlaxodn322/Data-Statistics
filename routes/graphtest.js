@@ -13,8 +13,8 @@ AWS.config.update({
 });
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 const tableName = process.env.NewDynamoTable;
-const tableName2 = process.env.NewDynamoTable2;
-const tableName3 = process.env.NewDynamoTable3;
+const tableName2 = process.env.NewDynamoTable;
+const tableName3 = process.env.NewDynamoTable;
 
 router.get('/getdata', async (req, res) => {
   try {
@@ -36,7 +36,7 @@ router.get('/getdata', async (req, res) => {
       TableName: currentTable,
       KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
       ExpressionAttributeValues: {
-        ':cid': 'car001',
+        ':cid': title,
         ':start': startTime,
         ':end': endTime,
         ':rackNumber': rackNumber,

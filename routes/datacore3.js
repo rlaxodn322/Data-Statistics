@@ -22,12 +22,12 @@ const dynamoDBNew = new AWS.DynamoDB.DocumentClient({
 });
 
 const tableName = process.env.DynamoTable3;
-const newTableName = process.env.NewDynamoTable3;
+const newTableName = process.env.NewDynamoTable;
 const insertJsonToDynamoDB = async (jsonString) => {
   try {
     const data = JSON.parse(jsonString); // JSON 문자열 파싱
     // clientId 필드를 추가
-    data.clientId = 'car002'; // 예시: 실제 clientId 값으로 대체
+    data.clientId = 'car003'; // 예시: 실제 clientId 값으로 대체
     // DynamoDB에 삽입할 아이템 생성
     const item = {
       clientId: data.clientId, // 파티션 키
@@ -921,62 +921,62 @@ const getData = async () => {
           hexValue210 = (dataObj.hexValue3 * 100).toFixed(1);
           hexValue211 = (dataObj.hexValue4 * 100).toFixed(1);
           break;
-        // case '16c:':
-        //   process1(dataObj, words);
-        //   hexValue212 = dataObj.hexValue1;
-        //   hexValue213 = dataObj.hexValue2;
-        //   hexValue214 = dataObj.hexValue3;
-        //   hexValue215 = dataObj.hexValue4;
-        //   break;
-        // case '16d:':
-        //   process1(dataObj, words);
-        //   hexValue216 = (dataObj.hexValue1 * 100).toFixed(1);
-        //   hexValue217 = (dataObj.hexValue2 * 100).toFixed(1);
-        //   hexValue218 = (dataObj.hexValue3 * 100).toFixed(1);
-        //   hexValue219 = (dataObj.hexValue4 * 100).toFixed(1);
-        //   break;
-        // case '17c:':
-        //   process1(dataObj, words);
-        //   hexValue220 = dataObj.hexValue1;
-        //   hexValue221 = dataObj.hexValue2;
-        //   hexValue222 = dataObj.hexValue3;
-        //   hexValue223 = dataObj.hexValue4;
-        //   break;
-        // case '17d:':
-        //   process1(dataObj, words);
-        //   hexValue224 = (dataObj.hexValue1 * 100).toFixed(1);
-        //   hexValue225 = (dataObj.hexValue2 * 100).toFixed(1);
-        //   hexValue226 = (dataObj.hexValue3 * 100).toFixed(1);
-        //   hexValue227 = (dataObj.hexValue4 * 100).toFixed(1);
-        //   break;
-        // case '18c:':
-        //   process1(dataObj, words);
-        //   hexValue228 = dataObj.hexValue1;
-        //   hexValue229 = dataObj.hexValue2;
-        //   hexValue230 = dataObj.hexValue3;
-        //   hexValue231 = dataObj.hexValue4;
-        //   break;
-        // case '18d:':
-        //   process1(dataObj, words);
-        //   hexValue232 = (dataObj.hexValue1 * 100).toFixed(1);
-        //   hexValue233 = (dataObj.hexValue2 * 100).toFixed(1);
-        //   hexValue234 = (dataObj.hexValue3 * 100).toFixed(1);
-        //   hexValue235 = (dataObj.hexValue4 * 100).toFixed(1);
-        //   break;
-        // case '19c:':
-        //   process1(dataObj, words);
-        //   hexValue236 = dataObj.hexValue1;
-        //   hexValue237 = dataObj.hexValue2;
-        //   hexValue238 = dataObj.hexValue3;
-        //   hexValue239 = dataObj.hexValue4;
-        //   break;
-        // case '19d:':
-        //   process1(dataObj, words);
-        //   hexValue240 = (dataObj.hexValue1 * 100).toFixed(1);
-        //   hexValue241 = (dataObj.hexValue2 * 100).toFixed(1);
-        //   hexValue242 = (dataObj.hexValue3 * 100).toFixed(1);
-        //   hexValue243 = (dataObj.hexValue4 * 100).toFixed(1);
-        //   break;
+        case '16c:':
+          process1(dataObj, words);
+          hexValue212 = dataObj.hexValue1;
+          hexValue213 = dataObj.hexValue2;
+          hexValue214 = dataObj.hexValue3;
+          hexValue215 = dataObj.hexValue4;
+          break;
+        case '16d:':
+          process1(dataObj, words);
+          hexValue216 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue217 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue218 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue219 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '17c:':
+          process1(dataObj, words);
+          hexValue220 = dataObj.hexValue1;
+          hexValue221 = dataObj.hexValue2;
+          hexValue222 = dataObj.hexValue3;
+          hexValue223 = dataObj.hexValue4;
+          break;
+        case '17d:':
+          process1(dataObj, words);
+          hexValue224 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue225 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue226 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue227 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '18c:':
+          process1(dataObj, words);
+          hexValue228 = dataObj.hexValue1;
+          hexValue229 = dataObj.hexValue2;
+          hexValue230 = dataObj.hexValue3;
+          hexValue231 = dataObj.hexValue4;
+          break;
+        case '18d:':
+          process1(dataObj, words);
+          hexValue232 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue233 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue234 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue235 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
+        case '19c:':
+          process1(dataObj, words);
+          hexValue236 = dataObj.hexValue1;
+          hexValue237 = dataObj.hexValue2;
+          hexValue238 = dataObj.hexValue3;
+          hexValue239 = dataObj.hexValue4;
+          break;
+        case '19d:':
+          process1(dataObj, words);
+          hexValue240 = (dataObj.hexValue1 * 100).toFixed(1);
+          hexValue241 = (dataObj.hexValue2 * 100).toFixed(1);
+          hexValue242 = (dataObj.hexValue3 * 100).toFixed(1);
+          hexValue243 = (dataObj.hexValue4 * 100).toFixed(1);
+          break;
         case '102:':
           process1(dataObj, words);
           hexValue112 = (dataObj.hexValue1 * 100).toFixed(1);
@@ -1055,38 +1055,38 @@ const getData = async () => {
       TrayCellMinTemp5: `${hexValue209}`,
       TrayCellMaxTemp5: `${hexValue210}`,
       TrayCellDifTemp5: `${hexValue211}`,
-      // TrayCellAvgVolt6: `${hexValue212}`,
-      // TrayCellMinVolt6: `${hexValue213}`,
-      // TrayCellMaxVolt6: `${hexValue214}`,
-      // TrayCellDifVolt6: `${hexValue215}`,
-      // TrayCellAvgTemp6: `${hexValue216}`,
-      // TrayCellMinTemp6: `${hexValue217}`,
-      // TrayCellMaxTemp6: `${hexValue218}`,
-      // TrayCellDifTemp6: `${hexValue219}`,
-      // TrayCellAvgVolt7: `${hexValue220}`,
-      // TrayCellMinVolt7: `${hexValue221}`,
-      // TrayCellMaxVolt7: `${hexValue222}`,
-      // TrayCellDifVolt7: `${hexValue223}`,
-      // TrayCellAvgTemp7: `${hexValue224}`,
-      // TrayCellMinTemp7: `${hexValue225}`,
-      // TrayCellMaxTemp7: `${hexValue226}`,
-      // TrayCellDifTemp7: `${hexValue227}`,
-      // TrayCellAvgVolt8: `${hexValue228}`,
-      // TrayCellMinVolt8: `${hexValue229}`,
-      // TrayCellMaxVolt8: `${hexValue230}`,
-      // TrayCellDifVolt8: `${hexValue231}`,
-      // TrayCellAvgTemp8: `${hexValue232}`,
-      // TrayCellMinTemp8: `${hexValue233}`,
-      // TrayCellMaxTemp8: `${hexValue234}`,
-      // TrayCellDifTemp8: `${hexValue235}`,
-      // TrayCellAvgVolt9: `${hexValue236}`,
-      // TrayCellMinVolt9: `${hexValue237}`,
-      // TrayCellMaxVolt9: `${hexValue238}`,
-      // TrayCellDifVolt9: `${hexValue239}`,
-      // TrayCellAvgTemp9: `${hexValue240}`,
-      // TrayCellMinTemp9: `${hexValue241}`,
-      // TrayCellMaxTemp9: `${hexValue242}`,
-      // TrayCellDifTemp9: `${hexValue243}`,
+      TrayCellAvgVolt6: `${hexValue212}`,
+      TrayCellMinVolt6: `${hexValue213}`,
+      TrayCellMaxVolt6: `${hexValue214}`,
+      TrayCellDifVolt6: `${hexValue215}`,
+      TrayCellAvgTemp6: `${hexValue216}`,
+      TrayCellMinTemp6: `${hexValue217}`,
+      TrayCellMaxTemp6: `${hexValue218}`,
+      TrayCellDifTemp6: `${hexValue219}`,
+      TrayCellAvgVolt7: `${hexValue220}`,
+      TrayCellMinVolt7: `${hexValue221}`,
+      TrayCellMaxVolt7: `${hexValue222}`,
+      TrayCellDifVolt7: `${hexValue223}`,
+      TrayCellAvgTemp7: `${hexValue224}`,
+      TrayCellMinTemp7: `${hexValue225}`,
+      TrayCellMaxTemp7: `${hexValue226}`,
+      TrayCellDifTemp7: `${hexValue227}`,
+      TrayCellAvgVolt8: `${hexValue228}`,
+      TrayCellMinVolt8: `${hexValue229}`,
+      TrayCellMaxVolt8: `${hexValue230}`,
+      TrayCellDifVolt8: `${hexValue231}`,
+      TrayCellAvgTemp8: `${hexValue232}`,
+      TrayCellMinTemp8: `${hexValue233}`,
+      TrayCellMaxTemp8: `${hexValue234}`,
+      TrayCellDifTemp8: `${hexValue235}`,
+      TrayCellAvgVolt9: `${hexValue236}`,
+      TrayCellMinVolt9: `${hexValue237}`,
+      TrayCellMaxVolt9: `${hexValue238}`,
+      TrayCellDifVolt9: `${hexValue239}`,
+      TrayCellAvgTemp9: `${hexValue240}`,
+      TrayCellMinTemp9: `${hexValue241}`,
+      TrayCellMaxTemp9: `${hexValue242}`,
+      TrayCellDifTemp9: `${hexValue243}`,
 
       RackRealSOC: `${hexValue112}`,
       RackSOH: `${hexValue113}`,

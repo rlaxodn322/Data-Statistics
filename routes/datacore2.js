@@ -22,7 +22,7 @@ const dynamoDBNew = new AWS.DynamoDB.DocumentClient({
 });
 
 const tableName = process.env.DynamoTable2;
-const newTableName = process.env.NewDynamoTable2;
+const newTableName = process.env.NewDynamoTable;
 const insertJsonToDynamoDB = async (jsonString) => {
   try {
     const data = JSON.parse(jsonString); // JSON 문자열 파싱
