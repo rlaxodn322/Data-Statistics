@@ -21,10 +21,19 @@ router.get('/getdata', async (req, res) => {
     const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
     const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
     const rackNumber = req.query.rackNumber; // 'rackNumber'로 변경
+    const title = req.query.title;
+    let currentTable;
 
+    if (title === 'car001') {
+      currentTable = tableName;
+    } else if (title === 'car002') {
+      currentTable = tableName2;
+    } else if (title === 'car003') {
+      currentTable = tableName3;
+    }
     // DynamoDB에서 해당 시간 범위의 데이터 읽기
     const params = {
-      TableName: tableName,
+      TableName: currentTable,
       KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
       ExpressionAttributeValues: {
         ':cid': 'car001',
@@ -63,19 +72,18 @@ router.get('/getdata', async (req, res) => {
   }
 });
 
-
 router.get('/getdata1', async (req, res) => {
   try {
     const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
     const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
-    const title = req.query.title1;
+    const title = req.query.title;
     let currentTable;
 
     if (title === 'car001') {
       currentTable = tableName;
     } else if (title === 'car002') {
       currentTable = tableName2;
-    } else if (title === 'car903') {
+    } else if (title === 'car003') {
       currentTable = tableName3;
     }
     // DynamoDB에서 해당 시간 범위의 데이터 읽기
