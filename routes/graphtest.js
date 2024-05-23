@@ -13,6 +13,8 @@ AWS.config.update({
 });
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 const tableName = process.env.NewDynamoTable;
+const tableName2 = process.env.NewDynamoTable2;
+const tableName3 = process.env.NewDynamoTable3;
 
 router.get('/getdata', async (req, res) => {
   try {
@@ -61,17 +63,27 @@ router.get('/getdata', async (req, res) => {
   }
 });
 
+
 router.get('/getdata1', async (req, res) => {
   try {
     const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
     const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
+    const title = req.query.title1;
+    let currentTable;
 
+    if (title === 'car001') {
+      currentTable = tableName;
+    } else if (title === 'car002') {
+      currentTable = tableName2;
+    } else if (title === 'car903') {
+      currentTable = tableName3;
+    }
     // DynamoDB에서 해당 시간 범위의 데이터 읽기
     const params = {
-      TableName: tableName,
+      TableName: currentTable,
       KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
       ExpressionAttributeValues: {
-        ':cid': 'car001', // 실제 clientId 값으로 바꿔야 함
+        ':cid': title, // 실제 clientId 값으로 바꿔야 함
         ':start': startTime,
         ':end': endTime,
       },
@@ -81,7 +93,7 @@ router.get('/getdata1', async (req, res) => {
         // '#otherData': 'data',
       },
       ScanIndexForward: false, // 최신 데이터 먼저 정렬
-      Limit: 1000, // 결과를 최대 1개로 제한
+      Limit: 50, // 결과를 최대 1개로 제한
     };
 
     const result = await dynamoDB.query(params).promise();
