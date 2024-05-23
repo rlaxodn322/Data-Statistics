@@ -32,7 +32,12 @@ const insertJsonToDynamoDB = async (jsonString) => {
       data.RackNumber === '08' ||
       data.RackNumber === '09' ||
       data.TrayCellAvgVolt6 === 'undefined' ||
-      data.TrayCellMaxVolt6 === '0.000'
+      data.TrayCellMaxVolt6 === '0.000' ||
+      data.TrayCellMinTemp3 === 'undefined' ||
+      data.UserSOC === 'undefined' ||
+      data.UserSOC === '0.000' ||
+      data.TrayCellDifTemp9 === '0.0' ||
+      data.RackSOH === 'undefined'
     ) {
       console.log(
         'RackNumber가 06, 07, 08, 09인 경우 DynamoDB에 삽입하지 않습니다.'
