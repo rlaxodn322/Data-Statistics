@@ -13,7 +13,20 @@ AWS.config.update({
 });
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 const tableName = process.env.NewDynamoTable;
+async function queryAllData(params) {
+  let items = [];
+  let data;
 
+  do {
+    data = await dynamoDB.query(params).promise();
+    items = items.concat(data.Items);
+    params.ExclusiveStartKey = data.LastEvaluatedKey;
+  } while (typeof data.LastEvaluatedKey !== 'undefined');
+
+  return items;
+}
+
+//graph
 router.get('/getdata', async (req, res) => {
   try {
     const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
@@ -40,22 +53,70 @@ router.get('/getdata', async (req, res) => {
       ScanIndexForward: false,
       //Limit: 500,
     };
-    const result = await dynamoDB.query(params).promise();
-
-    if (result.Items.length === 0) {
+    //const result = await dynamoDB.query(params).promise();
+    const items = await queryAllData(params);
+    if (items.length === 0) {
       console.log(
         'DynamoDB에서 해당 시간 범위의 데이터, RackNumber를 찾을 수 없습니다.'
       );
       res.json([]); // 데이터가 없으면 빈 배열 반환
       return;
     }
-    //console.log(result);
-    const transformedData = result.Items.map((item) => ({
+    // db 5개당 필터 걸러줌 코드
+    const filteredData = items.filter((item, index) => index % 5 === 0);
+
+    console.log(filteredData);
+    res.json(filteredData); // 요청에 따른 데이터 반환
+  } catch (error) {
+    console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
+    res.status(500).json({ error: '내부 서버 오류' });
+  }
+});
+
+//serach
+router.get('/getdata3', async (req, res) => {
+  try {
+    const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
+    const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
+    const rackNumber = req.query.rackNumber; // 'rackNumber'로 변경
+    const title = req.query.title;
+
+    // DynamoDB에서 해당 시간 범위의 데이터 읽기
+    const params = {
+      TableName: tableName,
+      KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
+      ExpressionAttributeValues: {
+        ':cid': title,
+        ':start': startTime,
+        ':end': endTime,
+        ':rackNumber': rackNumber,
+      },
+      FilterExpression: 'RackNumber = :rackNumber',
+      ExpressionAttributeNames: {
+        '#ts': 'time',
+        // '#otherData': 'data',  // 사용되지 않는 속성 제거
+        // '#otherData1': 'RackNumber',  // 사용되지 않는 속성 제거
+      },
+      ScanIndexForward: false,
+      //Limit: 500,
+    };
+    //const result = await dynamoDB.query(params).promise();
+    const items = await queryAllData(params);
+    if (items.length === 0) {
+      console.log(
+        'DynamoDB에서 해당 시간 범위의 데이터, RackNumber를 찾을 수 없습니다.'
+      );
+      res.json([]); // 데이터가 없으면 빈 배열 반환
+      return;
+    }
+    // console.log(result);
+    const transformedData = items.map((item) => ({
       ...item,
       // 추가 필드가 있다면 여기에 추가
     }));
     console.log(transformedData);
     res.json(transformedData); // 요청에 따른 데이터 반환
+    // 데이터 필터링: 10개마다 하나씩 선택
   } catch (error) {
     console.error('DynamoDB에서 데이터를 읽는 중 오류 발생:', error);
     res.status(500).json({ error: '내부 서버 오류' });
@@ -67,7 +128,7 @@ router.get('/getdata1', async (req, res) => {
     const startTime = req.query.startTime; // 요청에서 시작 시간 가져오기
     const endTime = req.query.endTime; // 요청에서 종료 시간 가져오기
     const title = req.query.title;
-  
+
     const params = {
       TableName: tableName,
       KeyConditionExpression: 'clientId = :cid AND #ts BETWEEN :start AND :end',
@@ -84,16 +145,16 @@ router.get('/getdata1', async (req, res) => {
       ScanIndexForward: false, // 최신 데이터 먼저 정렬
       //Limit: 500, // 결과를 최대 1개로 제한
     };
+    const items = await queryAllData(params);
+    //const result = await dynamoDB.query(params).promise();
 
-    const result = await dynamoDB.query(params).promise();
-
-    if (result.Items.length === 0) {
+    if (items.length === 0) {
       console.log('DynamoDB에서 해당 시간 범위의 데이터를 찾을 수 없습니다.');
       res.json([]); // 데이터가 없으면 빈 배열 반환
       return;
     }
     //console.log(result);
-    const transformedData = result.Items.map((item) => ({
+    const transformedData = items.map((item) => ({
       ...item,
       // 추가 필드가 있다면 여기에 추가
     }));
