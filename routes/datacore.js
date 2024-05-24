@@ -40,7 +40,8 @@ const insertJsonToDynamoDB = async (jsonString) => {
       );
       return; // RackNumber가 해당 값들인 경우 삽입하지 않고 함수 종료
     }
-    // clientId 필드를 추가
+    // clientId 필드를
+    가;
     data.clientId = 'car001'; // 예시: 실제 clientId 값으로 대체
     // DynamoDB에 삽입할 아이템 생성
     const item = {
@@ -410,27 +411,70 @@ const getData = async () => {
           hexValue137 = '';
           hexValue138 = '';
           hexValue139 = '';
-          // if (one1.charAt(7) === '1') {
-          //   hexValue133 += 'STAT_BMS_READY ';
-          // }
-          // if (one1.charAt(6) === '1') {
-          //   hexValue133 += 'STAT_CHG_MODE ';
-          // }
-          // if (one1.charAt(5) === '1') {
-          //   hexValue133 += 'STAT_DCH_MODE ';
-          // }
-          // if (one1.charAt(3) === '1') {
-          //   hexValue133 += 'STAT_RELAY_DCH ';
-          // }
-          // if (one1.charAt(2) === '1') {
-          //   hexValue133 += 'STAT_RELAY_PRE ';
-          // }
-          // if (one1.charAt(1) === '1') {
-          //   hexValue133 += 'STAT_RELAY_CHG ';
-          // }
-          // if (hexValue133 === '') {
-          //   hexValue133 = '?';
-          // }
+          if (one1.charAt(7) === '1') {
+            hexValue133 = 'BMS_READY ';
+          } else {
+            hexValue133 = 'BMS NOT READY';
+          }
+          if (one1.charAt(6) === '1') {
+            hexValue133 = 'STAT CHARGE MODE ';
+          }
+          if (one1.charAt(5) === '1') {
+            hexValue133 = 'STAT DISCHG MODE ';
+          }
+          if (one1.charAt(6) === '0' && one1.charAt(5) === '0') {
+            hexValue133 = 'STAT IDLE';
+          }
+          if (one1.charAt(3) === '1') {
+            hexValue133 = 'RELAY DISCHG MODE';
+          }
+          if (one1.charAt(2) === '1') {
+            hexValue133 = 'RELAY PRECHG MODE';
+          }
+          if (one1.charAt(1) === '1') {
+            hexValue133 = 'RELAY CHG MODE';
+          }
+          if (
+            one1.charAt(6) === '1' &&
+            one1.charAt(1) === '1' &&
+            parseFloat(hexValue131) > 0
+          ) {
+            hexValue133 = '충전중';
+          }
+          if (
+            one1.charAt(5) === '1' &&
+            one1.charAt(3) === '1' &&
+            parseFloat(hexValue131) < 0
+          ) {
+            hexValue133 = '방전중';
+          }
+          if (
+            one1.charAt(6) === '1' &&
+            one1.charAt(1) === '1' &&
+            one1.charAt(5) === '1' &&
+            one1.charAt(3) === '1' &&
+            parseFloat(hexValue131) === 0
+          ) {
+            hexValue133 = '연결중';
+          }
+          if (
+            one1.charAt(6) === '0' &&
+            one1.charAt(1) === '0' &&
+            one1.charAt(5) === '0' &&
+            one1.charAt(3) === '0'
+          ) {
+            hexValue133 = '대기중';
+          }
+          if (
+            one1.charAt(3) === '0' &&
+            one1.charAt(2) === '0' &&
+            one1.charAt(1) === '0'
+          ) {
+            hexValue133 = 'RELAY IDLE';
+          }
+          if (hexValue133 === '') {
+            hexValue133 = '?';
+          }
 
           if (one3.charAt(7) === '1') {
             hexValue134 += 'Pack Over Voltage Protection Fault ';
@@ -1021,6 +1065,7 @@ const getData = async () => {
       Battery: hex,
       RackNumber: hexValue128,
       AllRackReady: hexValue133,
+
       FalutWarning: `${hexValue134} ${hexValue135} ${hexValue136} ${hexValue137} ${hexValue138} ${hexValue139}`,
       TrayCellVolt1: `${hexValue} ${hexValue1} ${hexValue2} ${hexValue3} ${hexValue4} ${hexValue5} ${hexValue6} ${hexValue7} ${hexValue8} ${hexValue9} ${hexValue10} ${hexValue11} ${hexValue12} ${hexValue13} ${hexValue14} ${hexValue15} ${hexValue16} ${hexValue17} ${hexValue18} ${hexValue19} ${hexValue20} ${hexValue21}`,
       TrayCellTemp1: `${hexValue24} ${hexValue25} ${hexValue26} ${hexValue27} ${hexValue28} ${hexValue29} ${hexValue30} ${hexValue31} ${hexValue32} ${hexValue33} ${hexValue34} ${hexValue35} ${hexValue36} ${hexValue37} ${hexValue38} ${hexValue39} ${hexValue40} ${hexValue41} ${hexValue42} ${hexValue43} ${hexValue44} ${hexValue45}`,

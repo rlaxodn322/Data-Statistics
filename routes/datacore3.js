@@ -414,27 +414,70 @@ const getData = async () => {
           hexValue137 = '';
           hexValue138 = '';
           hexValue139 = '';
-          // if (one1.charAt(7) === '1') {
-          //   hexValue133 += 'STAT_BMS_READY ';
-          // }
-          // if (one1.charAt(6) === '1') {
-          //   hexValue133 += 'STAT_CHG_MODE ';
-          // }
-          // if (one1.charAt(5) === '1') {
-          //   hexValue133 += 'STAT_DCH_MODE ';
-          // }
-          // if (one1.charAt(3) === '1') {
-          //   hexValue133 += 'STAT_RELAY_DCH ';
-          // }
-          // if (one1.charAt(2) === '1') {
-          //   hexValue133 += 'STAT_RELAY_PRE ';
-          // }
-          // if (one1.charAt(1) === '1') {
-          //   hexValue133 += 'STAT_RELAY_CHG ';
-          // }
-          // if (hexValue133 === '') {
-          //   hexValue133 = '?';
-          // }
+          if (one1.charAt(7) === '1') {
+            hexValue133 = 'BMS_READY ';
+          } else {
+            hexValue133 = 'BMS NOT READY';
+          }
+          if (one1.charAt(6) === '1') {
+            hexValue133 = 'STAT CHARGE MODE ';
+          }
+          if (one1.charAt(5) === '1') {
+            hexValue133 = 'STAT DISCHG MODE ';
+          }
+          if (one1.charAt(6) === '0' && one1.charAt(5) === '0') {
+            hexValue133 = 'STAT IDLE';
+          }
+          if (one1.charAt(3) === '1') {
+            hexValue133 = 'RELAY DISCHG MODE';
+          }
+          if (one1.charAt(2) === '1') {
+            hexValue133 = 'RELAY PRECHG MODE';
+          }
+          if (one1.charAt(1) === '1') {
+            hexValue133 = 'RELAY CHG MODE';
+          }
+          if (
+            one1.charAt(6) === '1' &&
+            one1.charAt(1) === '1' &&
+            parseFloat(hexValue131) > 0
+          ) {
+            hexValue133 = '충전중';
+          }
+          if (
+            one1.charAt(5) === '1' &&
+            one1.charAt(3) === '1' &&
+            parseFloat(hexValue131) < 0
+          ) {
+            hexValue133 = '방전중';
+          }
+          if (
+            one1.charAt(6) === '1' &&
+            one1.charAt(1) === '1' &&
+            one1.charAt(5) === '1' &&
+            one1.charAt(3) === '1' &&
+            parseFloat(hexValue131) === 0
+          ) {
+            hexValue133 = '연결중';
+          }
+          if (
+            one1.charAt(6) === '0' &&
+            one1.charAt(1) === '0' &&
+            one1.charAt(5) === '0' &&
+            one1.charAt(3) === '0'
+          ) {
+            hexValue133 = '대기중';
+          }
+          if (
+            one1.charAt(3) === '0' &&
+            one1.charAt(2) === '0' &&
+            one1.charAt(1) === '0'
+          ) {
+            hexValue133 = 'RELAY IDLE';
+          }
+          if (hexValue133 === '') {
+            hexValue133 = '?';
+          }
 
           if (one3.charAt(7) === '1') {
             hexValue134 += 'Pack Over Voltage Protection Fault ';
