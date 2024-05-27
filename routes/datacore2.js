@@ -1064,7 +1064,7 @@ const getData = async () => {
       Battery: hex,
       RackNumber: hexValue128,
       AllRackReady: hexValue133,
-      FalutWarning: `${hexValue134} ${hexValue135} ${hexValue136} ${hexValue137} ${hexValue138} ${hexValue139}`,
+      FaultWarning: `${hexValue134} ${hexValue135} ${hexValue136} ${hexValue137} ${hexValue138} ${hexValue139}`,
       TrayCellVolt1: `${hexValue} ${hexValue1} ${hexValue2} ${hexValue3} ${hexValue4} ${hexValue5} ${hexValue6} ${hexValue7} ${hexValue8} ${hexValue9} ${hexValue10} ${hexValue11} ${hexValue12} ${hexValue13} ${hexValue14} ${hexValue15} ${hexValue16} ${hexValue17} ${hexValue18} ${hexValue19} ${hexValue20} ${hexValue21}`,
       TrayCellTemp1: `${hexValue24} ${hexValue25} ${hexValue26} ${hexValue27} ${hexValue28} ${hexValue29} ${hexValue30} ${hexValue31} ${hexValue32} ${hexValue33} ${hexValue34} ${hexValue35} ${hexValue36} ${hexValue37} ${hexValue38} ${hexValue39} ${hexValue40} ${hexValue41} ${hexValue42} ${hexValue43} ${hexValue44} ${hexValue45}`,
       TrayCellAvgVolt1: `${hexValue48}`,

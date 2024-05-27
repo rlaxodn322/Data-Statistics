@@ -623,6 +623,14 @@ const getData = async () => {
             let eightyone2 = words[7];
             hex = (parseInt(eightyone2 + eightyone1, 16) * 0.1).toFixed(1);
           }
+        case '8B:':
+          if (words.length >= 2) {
+            let eightyone1 = words[0].substring(3);
+            let eightyone2 = words[1];
+            hexValue244 = (parseInt(eightyone2 + eightyone1, 16) * 0.1).toFixed(
+              1
+            );
+          }
       }
     }
 
@@ -1068,7 +1076,8 @@ const getData = async () => {
       Battery: hex,
       RackNumber: hexValue128,
       AllRackReady: hexValue133,
-      FalutWarning: `${hexValue134} ${hexValue135} ${hexValue136} ${hexValue137} ${hexValue138} ${hexValue139}`,
+      PRATemp: hexValue244,
+      FaultWarning: `${hexValue134} ${hexValue135} ${hexValue136} ${hexValue137} ${hexValue138} ${hexValue139}`,
       TrayCellVolt1: `${hexValue} ${hexValue1} ${hexValue2} ${hexValue3} ${hexValue4} ${hexValue5} ${hexValue6} ${hexValue7} ${hexValue8} ${hexValue9} ${hexValue10} ${hexValue11} ${hexValue12} ${hexValue13} ${hexValue14} ${hexValue15} ${hexValue16} ${hexValue17} ${hexValue18} ${hexValue19} ${hexValue20} ${hexValue21}`,
       TrayCellTemp1: `${hexValue24} ${hexValue25} ${hexValue26} ${hexValue27} ${hexValue28} ${hexValue29} ${hexValue30} ${hexValue31} ${hexValue32} ${hexValue33} ${hexValue34} ${hexValue35} ${hexValue36} ${hexValue37} ${hexValue38} ${hexValue39} ${hexValue40} ${hexValue41} ${hexValue42} ${hexValue43} ${hexValue44} ${hexValue45}`,
       TrayCellAvgVolt1: `${hexValue48}`,
@@ -1179,7 +1188,7 @@ const getData = async () => {
 //   } catch (error) {
 //     console.error('1초마다 데이터 가져오기 중 오류 발생:', error);
 //   }
-// }, 4000); // 1000밀리초 (1초)마다 getData 함수 호출
+// }, 1000); // 1000밀리초 (1초)마다 getData 함수 호출
 
 //getdata 엔드포인트 정의
 router.get('/getdata', async (req, res) => {
