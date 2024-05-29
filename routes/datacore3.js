@@ -40,7 +40,7 @@ const insertJsonToDynamoDB = async (jsonString) => {
       data.RackSOH === 'undefined'
     ) {
       console.log(
-        'RackNumber가 06, 07, 08, 09인 경우 DynamoDB에 삽입하지 않습니다.'
+        'DynamoDB에 삽입하지 않습니다.'
       );
       return; // RackNumber가 해당 값들인 경우 삽입하지 않고 함수 종료
     }
